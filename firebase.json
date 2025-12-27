@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "DM_Electronix",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

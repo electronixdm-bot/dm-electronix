@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <!-- Favicon Links -->
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Optimización - DM Electronix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --white: #ffffff;
+            --cyan: #0cc0df;
+            --dark-blue: #1d2931;
+            --black: #000000;
+            --gray: #f5f5f5;
+            --light-gray: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            line-height: 1.6;
+        }
+
+        /* Header y Navegación */
+        header {
+            background-color: var(--dark-blue);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--cyan);
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--cyan);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 2rem 5%;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, rgba(12, 192, 223, 0.1) 0%, rgba(29, 41, 49, 0.1) 100%);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--cyan), var(--dark-blue));
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 span {
+            color: var(--cyan);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Manual Overview */
+        .manual-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 5rem;
+            align-items: center;
+        }
+
+        .manual-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .manual-image::before {
+            content: 'NUEVO';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background-color: var(--cyan);
+            color: var(--white);
+            padding: 0.5rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+
+        .manual-image i {
+            font-size: 10rem;
+            color: var(--cyan);
+        }
+
+        .manual-intro h2 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .manual-intro h2 span {
+            color: var(--cyan);
+        }
+
+        .manual-intro p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background-color: rgba(12, 192, 223, 0.1);
+            border-left: 4px solid var(--cyan);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h3 {
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.8rem;
+        }
+
+        /* Manual Details */
+        .manual-details {
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2 span {
+            color: var(--cyan);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .detail-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border-top: 4px solid var(--cyan);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .detail-icon {
+            font-size: 2.5rem;
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .detail-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-features {
+            list-style: none;
+        }
+
+        .detail-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .detail-features li i {
+            color: var(--cyan);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        /* Content Preview */
+        .content-preview {
+            margin-bottom: 5rem;
+            background-color: var(--gray);
+            padding: 3rem;
+            border-radius: 15px;
+        }
+
+        .preview-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .tab-button {
+            background-color: var(--white);
+            border: 2px solid var(--light-gray);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--dark-blue);
+            transition: all 0.3s;
+        }
+
+        .tab-button:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        .tab-button.active {
+            background-color: var(--cyan);
+            border-color: var(--cyan);
+            color: var(--white);
+        }
+
+        .tab-content {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            min-height: 300px;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .tab-pane h3 {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--cyan);
+        }
+
+        .tab-pane ul {
+            list-style: none;
+            column-count: 2;
+            column-gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .tab-pane ul {
+                column-count: 1;
+            }
+        }
+
+        .tab-pane li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            break-inside: avoid;
+        }
+
+        .tab-pane li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--cyan);
+            font-weight: bold;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .pricing-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--cyan);
+            position: relative;
+        }
+
+        .pricing-header {
+            background: linear-gradient(to right, var(--dark-blue), #253947);
+            color: var(--white);
+            padding: 2.5rem;
+        }
+
+        .pricing-header h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .pricing-features {
+            padding: 2.5rem;
+        }
+
+        .pricing-features ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .pricing-features li i {
+            color: var(--cyan);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .buy-button {
+            display: inline-block;
+            background-color: var(--cyan);
+            color: var(--white);
+            padding: 1rem 3rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: 2px solid var(--cyan);
+        }
+
+        .buy-button:hover {
+            background-color: transparent;
+            color: var(--cyan);
+        }
+
+        .guarantee-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(12, 192, 223, 0.1);
+            color: var(--dark-blue);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            margin-top: 2rem;
+            font-weight: 600;
+        }
+
+        .guarantee-badge i {
+            color: var(--cyan);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            margin-bottom: 5rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            color: rgba(12, 192, 223, 0.1);
+            font-family: serif;
+        }
+
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            color: #666;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--cyan);
+            font-size: 1.5rem;
+        }
+
+        .author-info h4 {
+            color: var(--dark-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .author-info p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-rating {
+            color: #ffc107;
+            margin-top: 0.5rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 5rem;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background-color: var(--gray);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark-blue);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #e9e9e9;
+        }
+
+        .faq-question i {
+            color: var(--cyan);
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Purchase Form */
+        .purchase-form {
+            margin-bottom: 5rem;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-container h2 span {
+            color: var(--cyan);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--cyan);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .payment-method:hover {
+            border-color: var(--cyan);
+        }
+
+        .payment-method.selected {
+            border-color: var(--cyan);
+            background-color: rgba(12, 192, 223, 0.1);
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .submit-btn {
+            background-color: var(--cyan);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #0aa9c4;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 3rem 5% 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--cyan);
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--cyan);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--cyan);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-blue);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                padding: 1rem;
+                display: block;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .manual-image {
+                height: 300px;
+            }
+            
+            .manual-image i {
+                font-size: 8rem;
+            }
+            
+            .form-container {
+                padding: 2rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header y Navegación -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="logo-text">DM <span>Electronix</span></div>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="services.html">Servicios</a></li>
+                <li><a href="components.html">Componentes</a></li>
+                <li><a href="manual.html" class="active">Manual de Optimización</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header fade-in">
+            <h1>Manual de <span>Optimización</span> para PCs</h1>
+            <p>Aprende a optimizar tu computadora como un profesional. Guía completa con técnicas avanzadas, herramientas recomendadas y tutoriales paso a paso para maximizar el rendimiento de tu equipo.</p>
+        </section>
+
+        <!-- Manual Overview -->
+        <section class="manual-overview fade-in">
+            <div class="manual-image">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <div class="manual-intro">
+                <h2>Optimiza tu PC como un <span>Profesional</span></h2>
+                <p>Este manual digital de 120 páginas contiene todo lo que necesitas saber para sacar el máximo rendimiento de tu computadora. Ya sea para gaming, productividad o uso general, aprenderás técnicas profesionales que normalmente solo conocen los expertos en informática.</p>
+                <p>Desarrollado por nuestros técnicos con más de 10 años de experiencia, este manual combina teoría y práctica con ejemplos reales y soluciones probadas.</p>
+                
+                <div class="highlight-box">
+                    <h3>¿Qué obtendrás con este manual?</h3>
+                    <p>Acceso inmediato a una guía completa que te enseñará desde los conceptos básicos hasta técnicas avanzadas de optimización. Incluye herramientas gratuitas recomendadas, tutoriales paso a paso y consejos exclusivos para mantener tu PC en óptimas condiciones.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Manual Details -->
+        <section class="manual-details">
+            <div class="section-title fade-in">
+                <h2>Contenido <span>Detallado</span></h2>
+                <p>Explora todo lo que incluye nuestro manual de optimización profesional.</p>
+            </div>
+            
+            <div class="details-grid">
+                <div class="detail-card fade-in">
+                    <div class="detail-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Optimización de Hardware</h3>
+                    <p>Aprende a configurar y optimizar cada componente de tu PC para máximo rendimiento.</p>
+                    <ul class="detail-features">
+                        <li><i class="fas fa-check"></i> Overclocking seguro de CPU y GPU</li>
+                        <li><i class="fas fa-check"></i> Configuración de memoria RAM</li>
+                        <li><i class="fas fa-check"></i> Optimización de almacenamiento (SSD/HDD)</li>
+                        <li><i class="fas fa-check"></i> Gestión térmica y refrigeración</li>
+                        <li><i class="fas fa-check"></i> Actualización de componentes</li>
+                    </ul>
+                </div>
+                
+                <div class="detail-card fade-in">
+                    <div class="detail-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Optimización de Software</h3>
+                    <p>Técnicas para optimizar Windows y software para mejor rendimiento y estabilidad.</p>
+                    <ul class="detail-features">
+                        <li><i class="fas fa-check"></i> Optimización de Windows 10/11</li>
+                        <li><i class="fas fa-check"></i> Configuración de BIOS/UEFI</li>
+                        <li><i class="fas fa-check"></i> Gestión de drivers y actualizaciones</li>
+                        <li><i class="fas fa-check"></i> Eliminación de bloatware</li>
+                        <li><i class="fas fa-check"></i> Configuración de servicios y procesos</li>
+                    </ul>
+                </div>
+                
+                <div class="detail-card fade-in">
+                    <div class="detail-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Optimización para Gaming</h3>
+                    <p>Maximiza el rendimiento en juegos con configuraciones específicas y herramientas especializadas.</p>
+                    <ul class="detail-features">
+                        <li><i class="fas fa-check"></i> Configuración de gráficos en juegos</li>
+                        <li><i class="fas fa-check"></i> Optimización de FPS y latencia</li>
+                        <li><i class="fas fa-check"></i> Configuración de NVIDIA/AMD Control Panel</li>
+                        <li><i class="fas fa-check"></i> Herramientas de monitoreo en tiempo real</li>
+                        <li><i class="fas fa-check"></i> Solución de problemas comunes en gaming</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Preview -->
+        <section class="content-preview fade-in">
+            <div class="section-title">
+                <h2>Vista Previa del <span>Contenido</span></h2>
+                <p>Explora los temas principales que cubre nuestro manual de optimización.</p>
+            </div>
+            
+            <div class="preview-tabs">
+                <button class="tab-button active" data-tab="tab1">Capítulos Principales</button>
+                <button class="tab-button" data-tab="tab2">Herramientas Incluidas</button>
+                <button class="tab-button" data-tab="tab3">Tutoriales Paso a Paso</button>
+            </div>
+            
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+                    <h3>Capítulos Principales del Manual</h3>
+                    <ul>
+                        <li>Introducción a la optimización de PCs</li>
+                        <li>Fundamentos de hardware para optimización</li>
+                        <li>Overclocking seguro: Guía completa</li>
+                        <li>Optimización de Windows para máximo rendimiento</li>
+                        <li>Configuración de BIOS/UEFI avanzada</li>
+                        <li>Gestión de temperatura y refrigeración</li>
+                        <li>Optimización de almacenamiento (SSD/HDD/NVMe)</li>
+                        <li>Configuración de gráficos para gaming</li>
+                        <li>Herramientas de diagnóstico y monitoreo</li>
+                        <li>Mantenimiento preventivo y solución de problemas</li>
+                        <li>Optimización para streaming y contenido</li>
+                        <li>Seguridad y rendimiento equilibrados</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-pane" id="tab2">
+                    <h3>Herramientas Recomendadas e Incluidas</h3>
+                    <ul>
+                        <li>MSI Afterburner - Overclocking y monitoreo</li>
+                        <li>CPU-Z/GPU-Z - Información de componentes</li>
+                        <li>HWMonitor - Monitoreo de temperaturas</li>
+                        <li>CrystalDiskMark - Benchmark de almacenamiento</li>
+                        <li>3DMark/UserBenchmark - Benchmarks completos</li>
+                        <li>CCleaner - Limpieza de sistema</li>
+                        <li>Autoruns - Gestión de inicio de Windows</li>
+                        <li>Process Lasso - Optimización de procesos</li>
+                        <li>DDU - Limpieza de drivers de gráficos</li>
+                        <li>MemTest86 - Pruebas de memoria RAM</li>
+                        <li>FurMark - Pruebas de estrés de GPU</li>
+                        <li>Prime95 - Pruebas de estrés de CPU</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-pane" id="tab3">
+                    <h3>Tutoriales Paso a Paso Incluidos</h3>
+                    <ul>
+                        <li>Configuración completa de BIOS para rendimiento</li>
+                        <li>Overclocking de CPU Intel y AMD paso a paso</li>
+                        <li>Overclocking de GPU NVIDIA y AMD</li>
+                        <li>Optimización de memoria RAM y perfiles XMP</li>
+                        <li>Configuración de Windows para gaming</li>
+                        <li>Limpieza profunda de sistema y registro</li>
+                        <li>Instalación y configuración de drivers</li>
+                        <li>Configuración de perfiles de energía</li>
+                        <li>Optimización de SSD y configuración de TRIM</li>
+                        <li>Configuración de refrigeración líquida</li>
+                        <li>Monitoreo de temperatura y rendimiento</li>
+                        <li>Creación de puntos de restauración y backup</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section fade-in">
+            <div class="section-title">
+                <h2>Obtén tu <span>Manual Digital</span></h2>
+                <p>Invierte en conocimiento que te durará toda la vida y transformará cómo usas y mantienes tu computadora.</p>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Manual de Optimización Premium</h3>
+                    <div class="pricing-price">$29.99</div>
+                    <div class="pricing-period">Pago único - Acceso de por vida</div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Manual digital de 120 páginas en PDF</li>
+                        <li><i class="fas fa-check"></i> Acceso inmediato tras la compra</li>
+                        <li><i class="fas fa-check"></i> Actualizaciones gratuitas de por vida</li>
+                        <li><i class="fas fa-check"></i> Lista de herramientas recomendadas</li>
+                        <li><i class="fas fa-check"></i> Tutoriales paso a paso con imágenes</li>
+                        <li><i class="fas fa-check"></i> Acceso a comunidad privada</li>
+                        <li><i class="fas fa-check"></i> Soporte por email para dudas</li>
+                    </ul>
+                    
+                    <a href="#purchase-form" class="buy-button">Comprar Ahora</a>
+                    
+                    <div class="guarantee-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Garantía de devolución de 30 días</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials fade-in">
+            <div class="section-title">
+                <h2>Opiniones de <span>Clientes</span></h2>
+                <p>Descubre lo que dicen quienes ya han comprado nuestro manual de optimización.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Compré este manual para mejorar el rendimiento de mi PC gaming y los resultados fueron increíbles. Pasé de 60 FPS en Cyberpunk 2077 a más de 85 FPS con las optimizaciones recomendadas. Vale cada centavo."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Carlos Rodríguez</h4>
+                            <p>Gamer y Streamer</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Como editor de video, mi PC es mi herramienta principal. Este manual me enseñó a optimizar mi equipo para reducir los tiempos de renderizado en más del 30%. Las secciones sobre configuración de almacenamiento fueron especialmente útiles."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Ana Martínez</h4>
+                            <p>Editora de Video Profesional</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Soy técnico informático y compré este manual para actualizar mis conocimientos. Aprendí técnicas avanzadas de overclocking y optimización que ahora aplico con mis clientes. Excelente inversión para cualquier profesional del sector."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>David López</h4>
+                            <p>Técnico en Informática</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section fade-in">
+            <div class="section-title">
+                <h2>Preguntas <span>Frecuentes</span></h2>
+                <p>Resolvemos las dudas más comunes sobre nuestro manual de optimización.</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué formato tiene el manual y cómo lo recibo?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El manual se entrega en formato PDF de alta calidad, optimizado para lectura en computadoras, tablets y smartphones. Tras completar tu compra, recibirás inmediatamente un enlace de descarga en tu correo electrónico. También podrás acceder al manual desde tu área de cliente en nuestro sitio web.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿El manual es adecuado para principiantes?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, el manual está diseñado para usuarios de todos los niveles. Comienza con conceptos básicos y avanza gradualmente hacia técnicas más avanzadas. Cada capítulo incluye explicaciones claras, imágenes ilustrativas y advertencias de seguridad para evitar errores comunes. Incluso si nunca has abierto tu PC, podrás seguir las instrucciones paso a paso.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿El manual cubre versiones específicas de Windows?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El manual cubre Windows 10 y Windows 11 en detalle, con secciones específicas para cada versión. Las técnicas de optimización de hardware son universales y aplican a cualquier sistema operativo. Además, incluimos comparativas entre versiones y recomendaciones específicas según el Windows que uses.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué sucede si actualizan el manual?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Todas las compras incluyen actualizaciones gratuitas de por vida. Cuando lancemos una nueva versión del manual, recibirás una notificación por email con el enlace para descargar la versión actualizada sin costo adicional. Nuestro compromiso es mantener el manual relevante con las últimas tecnologías y técnicas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Hay garantía de devolución?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, ofrecemos una garantía de devolución de 30 días. Si no estás satisfecho con el manual por cualquier razón, puedes solicitar un reembolso completo dentro de los primeros 30 días tras la compra. No hacemos preguntas complicadas, tu satisfacción es nuestra prioridad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Purchase Form -->
+        <section class="purchase-form" id="purchase-form">
+            <div class="form-container fade-in">
+                <h2>Completa tu <span>Compra</span></h2>
+                <p>Llena el siguiente formulario para adquirir el Manual de Optimización Premium.</p>
+                
+                <form id="purchaseForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="country">País *</label>
+                        <select id="country" name="country" required>
+                            <option value="">Selecciona tu país</option>
+                            <option value="AR">Argentina</option>
+                            <option value="MX">México</option>
+                            <option value="ES">España</option>
+                            <option value="CO">Colombia</option>
+                            <option value="CL">Chile</option>
+                            <option value="PE">Perú</option>
+                            <option value="US">Estados Unidos</option>
+                            <option value="other">Otro país</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Método de Pago *</label>
+                        <div class="payment-methods">
+                            <div class="payment-method selected" data-payment="credit">
+                                <i class="fas fa-credit-card"></i>
+                                <p>Tarjeta de Crédito</p>
+                            </div>
+                            <div class="payment-method" data-payment="paypal">
+                                <i class="fab fa-paypal"></i>
+                                <p>PayPal</p>
+                            </div>
+                            <div class="payment-method" data-payment="transfer">
+                                <i class="fas fa-university"></i>
+                                <p>Transferencia</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="payment-method" name="payment-method" value="credit">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coupon">Código de Descuento (opcional)</label>
+                        <input type="text" id="coupon" name="coupon" placeholder="Ingresa tu código si tienes uno">
+                    </div>
+                    
+                    <div class="form-group">
+                        <div style="background-color: #f9f9f9; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Manual de Optimización Premium:</span>
+                                <span>$29.99</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Descuento:</span>
+                                <span id="discount-amount">$0.00</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; padding-top: 0.5rem; border-top: 1px solid var(--light-gray);">
+                                <span>Total a pagar:</span>
+                                <span id="total-price">$29.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Comprar Manual por $29.99</button>
+                    
+                    <p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                        Al completar tu compra, aceptas nuestros <a href="#" style="color: var(--cyan);">Términos de Servicio</a> y <a href="#" style="color: var(--cyan);">Política de Privacidad</a>.
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>DM Electronix</h3>
+                <p>Somos una empresa especializada en servicios técnicos y venta de componentes informáticos. Calidad y profesionalismo desde 2010.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Servicios</h3>
+                <a href="pc-repair.html">Reparación de PCs</a>
+                <a href="laptop-repair.html">Reparación de Laptops</a>
+                <a href="cellphone-repair.html">Reparación de Celulares</a>
+                <a href="custom-pc.html">PCs Personalizados</a>
+                <a href="optimization.html">Optimización de PCs</a>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Calle Tecnología 123, Ciudad Digital</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@dmelectronix.com</p>
+                <p><i class="fas fa-clock"></i> Lunes a Viernes: 9:00 - 19:00</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Suscríbete para recibir ofertas especiales y novedades tecnológicas.</p>
+                <form id="newsletter-form">
+                    <input type="email" placeholder="Tu correo electrónico" required>
+                    <button type="submit" class="submit-btn" style="margin-top: 10px;">Suscribirse</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 DM Electronix. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menú hamburguesa
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Tabs de vista previa
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Remover clase active de todos los botones y paneles
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                });
+                
+                // Agregar clase active al botón clickeado y panel correspondiente
+                this.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                // Cerrar todas las demás respuestas
+                document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+                    if (otherAnswer !== answer && otherAnswer.classList.contains('active')) {
+                        otherAnswer.classList.remove('active');
+                        otherAnswer.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                // Alternar la respuesta actual
+                answer.classList.toggle('active');
+                
+                // Rotar el ícono
+                if (answer.classList.contains('active')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+        
+        // Selección de método de pago
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                // Remover la clase 'selected' de todas las opciones
+                document.querySelectorAll('.payment-method').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Agregar la clase 'selected' a la opción clickeada
+                this.classList.add('selected');
+                
+                // Actualizar el valor del campo oculto
+                const paymentMethod = this.getAttribute('data-payment');
+                document.getElementById('payment-method').value = paymentMethod;
+            });
+        });
+        
+        // Código de descuento
+        document.getElementById('coupon').addEventListener('input', function() {
+            const coupon = this.value.toUpperCase();
+            const discountAmount = document.getElementById('discount-amount');
+            const totalPrice = document.getElementById('total-price');
+            const basePrice = 29.99;
+            
+            // Códigos de descuento válidos
+            const validCoupons = {
+                'OPTIMIZE10': 0.10, // 10% de descuento
+                'DMELECTRONIX': 0.15, // 15% de descuento
+                'GAMING2023': 0.20, // 20% de descuento
+            };
+            
+            if (validCoupons[coupon]) {
+                const discount = basePrice * validCoupons[coupon];
+                const finalPrice = basePrice - discount;
+                
+                discountAmount.textContent = `-$${discount.toFixed(2)}`;
+                totalPrice.textContent = `$${finalPrice.toFixed(2)}`;
+                
+                // Actualizar texto del botón
+                document.querySelector('.submit-btn').textContent = `Comprar Manual por $${finalPrice.toFixed(2)}`;
+            } else if (coupon.length >= 5) {
+                discountAmount.textContent = '$0.00';
+                totalPrice.textContent = '$29.99';
+                document.querySelector('.submit-btn').textContent = 'Comprar Manual por $29.99';
+            }
+        });
+        
+        // Formulario de compra
+        document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const paymentMethod = document.getElementById('payment-method').value;
+            const totalPrice = document.getElementById('total-price').textContent;
+            
+            alert(`¡Gracias por tu compra!\n\nHemos registrado tu pedido del Manual de Optimización Premium por ${totalPrice}. Te hemos enviado un correo electrónico con los detalles de tu compra y el enlace de descarga.\n\nMétodo de pago seleccionado: ${paymentMethod === 'credit' ? 'Tarjeta de Crédito' : paymentMethod === 'paypal' ? 'PayPal' : 'Transferencia Bancaria'}`);
+            this.reset();
+            
+            // Resetear valores
+            document.querySelectorAll('.payment-method').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.querySelector('.payment-method[data-payment="credit"]').classList.add('selected');
+            document.getElementById('payment-method').value = "credit";
+            document.getElementById('discount-amount').textContent = "$0.00";
+            document.getElementById('total-price').textContent = "$29.99";
+            document.querySelector('.submit-btn').textContent = 'Comprar Manual por $29.99';
+        });
+        
+        // Formulario de newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert(`¡Gracias por suscribirte con el correo: ${email}! Te enviaremos nuestras mejores ofertas.`);
+            this.reset();
+        });
+        
+        // Animación de aparición al hacer scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Inicializar elementos con opacidad 0 para la animación
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+        
+        // Ejecutar al cargar y al hacer scroll
+        window.addEventListener('load', fadeInOnScroll);
+        window.addEventListener('scroll', fadeInOnScroll);
+    </script>
+</body>
+</html>

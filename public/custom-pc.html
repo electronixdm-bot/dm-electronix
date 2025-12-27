@@ -1,0 +1,2627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Favicon Links -->
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCs Personalizados - DM Electronix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --white: #ffffff;
+            --cyan: #0cc0df;
+            --dark-blue: #1d2931;
+            --black: #000000;
+            --gray: #f5f5f5;
+            --light-gray: #e0e0e0;
+            --success-green: #4CAF50;
+            --warning-orange: #ff9800;
+            --danger-red: #f44336;
+            --purple: #9c27b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            line-height: 1.6;
+        }
+
+        /* Header y Navegación */
+        header {
+            background-color: var(--dark-blue);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--cyan);
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--cyan);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 2rem 5%;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, rgba(12, 192, 223, 0.1) 0%, rgba(29, 41, 49, 0.1) 100%);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--cyan), var(--dark-blue));
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 span {
+            color: var(--cyan);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* PC Builder Section */
+        .pc-builder {
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2 span {
+            color: var(--cyan);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Budget Selector */
+        .budget-selector {
+            background-color: var(--gray);
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .budget-selector h3 {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 2rem;
+        }
+
+        .budget-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .budget-option {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .budget-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .budget-option.selected {
+            border-color: var(--cyan);
+            background-color: rgba(12, 192, 223, 0.05);
+        }
+
+        .budget-option h4 {
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .budget-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+        }
+
+        .budget-option p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Configuration Selector */
+        .configuration-selector {
+            margin-bottom: 5rem;
+        }
+
+        .config-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .config-option {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .config-option:hover {
+            transform: translateY(-10px);
+        }
+
+        .config-option.featured {
+            border-color: var(--cyan);
+            transform: scale(1.05);
+            position: relative;
+        }
+
+        .config-option.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .config-option.featured::before {
+            content: 'MÁS POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background-color: var(--cyan);
+            color: var(--white);
+            padding: 0.5rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+            z-index: 2;
+        }
+
+        .config-header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .config-option.featured .config-header {
+            background-color: var(--cyan);
+        }
+
+        .config-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .config-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .config-specs {
+            padding: 2rem;
+        }
+
+        .config-specs ul {
+            list-style: none;
+        }
+
+        .config-specs li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .config-specs li i {
+            color: var(--cyan);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .config-price {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .config-price .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .config-price .original-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .config-button {
+            display: block;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border-top: 1px solid var(--light-gray);
+            cursor: pointer;
+        }
+
+        .config-option.featured .config-button {
+            background-color: var(--cyan);
+        }
+
+        .config-button:hover {
+            background-color: var(--cyan);
+        }
+
+        .config-option.featured .config-button:hover {
+            background-color: var(--dark-blue);
+        }
+
+        /* PC Builder Tool */
+        .pc-builder-tool {
+            background-color: var(--gray);
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 5rem;
+        }
+
+        .builder-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .builder-step {
+            display: flex;
+            align-items: center;
+            margin: 0 1rem;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 10px;
+            z-index: 1;
+            transition: background-color 0.3s;
+        }
+
+        .builder-step.active .step-number {
+            background-color: var(--cyan);
+        }
+
+        .step-text {
+            font-weight: 600;
+            color: var(--dark-blue);
+            transition: color 0.3s;
+        }
+
+        .builder-step.active .step-text {
+            color: var(--cyan);
+        }
+
+        .builder-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            width: 40px;
+            height: 2px;
+            background-color: var(--light-gray);
+        }
+
+        .builder-content {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            min-height: 400px;
+        }
+
+        .component-category {
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .component-category.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .component-category h4 {
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--cyan);
+        }
+
+        .component-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .component-option {
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            position: relative;
+        }
+
+        .component-option:hover {
+            border-color: var(--cyan);
+            transform: translateY(-5px);
+        }
+
+        .component-option.selected {
+            border-color: var(--cyan);
+            background-color: rgba(12, 192, 223, 0.05);
+        }
+
+        .component-option h5 {
+            font-size: 1.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .component-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            min-height: 40px;
+        }
+
+        .component-price {
+            color: var(--cyan);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .component-compatibility {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .component-warning {
+            color: var(--warning-orange);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .builder-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .builder-btn {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .builder-btn:hover {
+            background-color: var(--cyan);
+        }
+
+        .builder-btn:disabled {
+            background-color: var(--light-gray);
+            cursor: not-allowed;
+        }
+
+        .clear-all-btn {
+            background-color: var(--danger-red);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: auto;
+            margin-right: 1rem;
+        }
+
+        .clear-all-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .builder-summary {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 2rem;
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .summary-header h4 {
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+        }
+
+        .total-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .summary-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem;
+            border-radius: 5px;
+            background-color: rgba(12, 192, 223, 0.05);
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .summary-item:hover {
+            background-color: rgba(12, 192, 223, 0.1);
+        }
+
+        .summary-item:last-child {
+            background-color: rgba(29, 41, 49, 0.05);
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+            border-top: 2px solid var(--cyan);
+        }
+
+        .summary-item-name {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .summary-item-price {
+            font-weight: 600;
+            color: var(--cyan);
+            margin-right: 0.5rem;
+        }
+
+        .remove-component {
+            background: none;
+            border: none;
+            color: var(--danger-red);
+            cursor: pointer;
+            font-size: 1rem;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .remove-component:hover {
+            background-color: rgba(244, 67, 54, 0.1);
+            transform: scale(1.1);
+        }
+
+        .empty-summary {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .empty-summary i {
+            font-size: 3rem;
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            margin-bottom: 5rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--cyan);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .benefit-card p {
+            color: #666;
+        }
+
+        /* Custom Quote Form */
+        .custom-quote {
+            margin-bottom: 5rem;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-container h2 span {
+            color: var(--cyan);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cyan);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .purpose-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .purpose-option {
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .purpose-option:hover {
+            border-color: var(--cyan);
+        }
+
+        .purpose-option.selected {
+            border-color: var(--cyan);
+            background-color: rgba(12, 192, 223, 0.1);
+        }
+
+        .purpose-option i {
+            font-size: 1.5rem;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .budget-slider {
+            margin-top: 1rem;
+        }
+
+        .slider-container {
+            position: relative;
+            height: 40px;
+            margin-top: 1rem;
+        }
+
+        .slider-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: var(--light-gray);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .slider-thumb {
+            position: absolute;
+            top: 50%;
+            width: 24px;
+            height: 24px;
+            background-color: var(--cyan);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .slider-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .slider-value {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .submit-btn {
+            background-color: var(--cyan);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #0aa9c4;
+        }
+
+        .submit-btn:disabled {
+            background-color: var(--light-gray);
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 3rem 5% 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--cyan);
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--cyan);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--cyan);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success-green);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notification.error {
+            background-color: #f44336;
+        }
+
+        .notification.info {
+            background-color: var(--cyan);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-blue);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                padding: 1rem;
+                display: block;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .config-option.featured {
+                transform: none;
+            }
+            
+            .config-option.featured:hover {
+                transform: translateY(-10px);
+            }
+            
+            .builder-step:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-container {
+                padding: 2rem;
+            }
+            
+            .budget-selector {
+                padding: 2rem;
+            }
+            
+            .builder-steps {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .builder-step {
+                margin: 0;
+            }
+            
+            .builder-step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .builder-navigation {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .clear-all-btn {
+                margin: 0;
+                order: 1;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Compatibility Warning */
+        .compatibility-warning {
+            background-color: #fff8e1;
+            border-left: 4px solid var(--warning-orange);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .compatibility-warning.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .compatibility-warning h5 {
+            color: var(--warning-orange);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Component Specs */
+        .component-specs {
+            font-size: 0.8rem;
+            color: #777;
+            text-align: left;
+            margin-top: 0.5rem;
+            border-top: 1px solid #eee;
+            padding-top: 0.5rem;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.2rem;
+        }
+        
+        .spec-label {
+            font-weight: 600;
+        }
+        
+        /* Progress Indicator */
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: rgba(12, 192, 223, 0.05);
+            border-radius: 10px;
+        }
+        
+        .progress-text {
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            margin: 0 1rem;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--cyan);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-percentage {
+            font-weight: 700;
+            color: var(--cyan);
+            min-width: 50px;
+            text-align: right;
+        }
+        
+        /* Shipping Badge */
+        .shipping-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--success-green);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header y Navegación -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <div class="logo-text">DM <span>Electronix</span></div>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="services.html">Servicios</a></li>
+                <li><a href="components.html">Componentes</a></li>
+                <li><a href="manual.html">Manual de Optimización</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header fade-in">
+            <h1>PCs <span>Personalizados</span></h1>
+            <p>Construimos el equipo perfecto para ti, adaptado a tus necesidades específicas y presupuesto. Desde PCs gaming de alto rendimiento hasta equipos de oficina eficientes.</p>
+        </section>
+
+        <!-- PC Builder Section -->
+        <section class="pc-builder">
+            <div class="section-title fade-in">
+                <h2>Construye tu PC <span>Ideal</span></h2>
+                <p>Elige entre nuestras configuraciones predefinidas o personaliza cada componente según tus necesidades.</p>
+            </div>
+            
+            <!-- Budget Selector -->
+            <div class="budget-selector fade-in">
+                <h3>Selecciona tu <span>Presupuesto</span></h3>
+                <p>Elige un rango de precio para ver las mejores opciones dentro de tu presupuesto.</p>
+                
+                <div class="budget-options">
+                    <div class="budget-option selected" data-budget="low">
+                        <h4>Económico</h4>
+                        <div class="budget-price">₲1.500.000 - ₲5.840.000</div>
+                        <p>PC para tareas básicas, oficina y navegación web.</p>
+                    </div>
+                    
+                    <div class="budget-option" data-budget="medium">
+                        <h4>Intermedio</h4>
+                        <div class="budget-price">₲5.840.000 - ₲10.950.000</div>
+                        <p>PC para gaming casual, edición multimedia y productividad.</p>
+                    </div>
+                    
+                    <div class="budget-option" data-budget="high">
+                        <h4>Gaming</h4>
+                        <div class="budget-price">₲10.950.000 - ₲18.250.000</div>
+                        <p>PC para gaming de alto rendimiento y trabajo profesional.</p>
+                    </div>
+                    
+                    <div class="budget-option" data-budget="premium">
+                        <h4>Premium</h4>
+                        <div class="budget-price">₲18.250.000+</div>
+                        <p>PC de máxima potencia para gaming 4K y estaciones de trabajo.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Configuration Selector -->
+            <div class="configuration-selector fade-in">
+                <div class="section-title">
+                    <h2>Configuraciones <span>Predefinidas</span></h2>
+                    <p>Elige entre nuestras configuraciones optimizadas para diferentes usos.</p>
+                </div>
+                
+                <div class="config-options">
+                    <div class="config-option fade-in" data-preset="office">
+                        <div class="config-header">
+                            <div class="config-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3>PC de Oficina</h3>
+                        </div>
+                        <div class="config-specs">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Procesador Intel Core i5 / AMD Ryzen 5</li>
+                                <li><i class="fas fa-check"></i> 16GB RAM DDR4</li>
+                                <li><i class="fas fa-check"></i> SSD 512GB NVMe</li>
+                                <li><i class="fas fa-check"></i> Gráficos integrados</li>
+                                <li><i class="fas fa-check"></i> Fuente 500W 80+ Bronze</li>
+                                <li><i class="fas fa-check"></i> Gabinete básico</li>
+                            </ul>
+                        </div>
+                        <div class="config-price">
+                            <div class="price">₲5.109.270</div>
+                            <div class="original-price">₲5.839.270</div>
+                            <p>Ideal para productividad y tareas diarias</p>
+                        </div>
+                        <div class="config-button" data-preset="office">Aplicar esta Configuración</div>
+                    </div>
+                    
+                    <div class="config-option featured fade-in" data-preset="gaming">
+                        <div class="config-header">
+                            <div class="config-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h3>PC Gaming</h3>
+                        </div>
+                        <div class="config-specs">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Procesador AMD Ryzen 7 5800X</li>
+                                <li><i class="fas fa-check"></i> 32GB RAM DDR4 3200MHz</li>
+                                <li><i class="fas fa-check"></i> GPU NVIDIA RTX 4070 12GB</li>
+                                <li><i class="fas fa-check"></i> SSD 1TB NVMe + HDD 2TB</li>
+                                <li><i class="fas fa-check"></i> Fuente 750W 80+ Gold</li>
+                                <li><i class="fas fa-check"></i> Gabinete con RGB y ventilación</li>
+                            </ul>
+                        </div>
+                        <div class="config-price">
+                            <div class="price">₲13.869.270</div>
+                            <div class="original-price">₲15.329.270</div>
+                            <p>Máximo rendimiento para gaming en 1440p/4K</p>
+                        </div>
+                        <div class="config-button" data-preset="gaming">Aplicar esta Configuración</div>
+                    </div>
+                    
+                    <div class="config-option fade-in" data-preset="editing">
+                        <div class="config-header">
+                            <div class="config-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <h3>PC para Edición</h3>
+                        </div>
+                        <div class="config-specs">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Procesador Intel Core i7 13700K</li>
+                                <li><i class="fas fa-check"></i> 64GB RAM DDR5 5200MHz</li>
+                                <li><i class="fas fa-check"></i> GPU NVIDIA RTX 4070 Ti</li>
+                                <li><i class="fas fa-check"></i> SSD 2TB NVMe + HDD 4TB</li>
+                                <li><i class="fas fa-check"></i> Fuente 850W 80+ Platinum</li>
+                                <li><i class="fas fa-check"></i> Gabinete silencioso y refrigerado</li>
+                            </ul>
+                        </div>
+                        <div class="config-price">
+                            <div class="price">₲18.249.270</div>
+                            <div class="original-price">₲20.439.270</div>
+                            <p>Potencia para edición de video, 3D y diseño</p>
+                        </div>
+                        <div class="config-button" data-preset="editing">Aplicar esta Configuración</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PC Builder Tool -->
+        <section class="pc-builder-tool fade-in">
+            <div class="section-title">
+                <h2>Constructor de PC <span>Personalizado</span></h2>
+                <p>Selecciona cada componente según tus preferencias y ve el precio actualizado en tiempo real.</p>
+            </div>
+            
+            <!-- Progress Indicator -->
+            <div class="progress-indicator">
+                <div class="progress-text">Progreso de Construcción</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-percentage" id="progress-percentage">0%</div>
+            </div>
+            
+            <div class="builder-steps">
+                <div class="builder-step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Procesador</div>
+                </div>
+                <div class="builder-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Tarjeta Gráfica</div>
+                </div>
+                <div class="builder-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Memoria RAM</div>
+                </div>
+                <div class="builder-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-text">Almacenamiento</div>
+                </div>
+                <div class="builder-step" data-step="5">
+                    <div class="step-number">5</div>
+                    <div class="step-text">Placa Madre</div>
+                </div>
+                <div class="builder-step" data-step="6">
+                    <div class="step-number">6</div>
+                    <div class="step-text">Fuente de Poder</div>
+                </div>
+                <div class="builder-step" data-step="7">
+                    <div class="step-number">7</div>
+                    <div class="step-text">Gabinete</div>
+                </div>
+            </div>
+            
+            <!-- Compatibility Warning -->
+            <div class="compatibility-warning" id="compatibility-warning">
+                <h5><i class="fas fa-exclamation-triangle"></i> Advertencia de Compatibilidad</h5>
+                <p id="warning-text">Algunos componentes seleccionados pueden no ser compatibles entre sí. Revisa las especificaciones antes de continuar.</p>
+            </div>
+            
+            <div class="builder-content">
+                <!-- CPU Category -->
+                <div class="component-category active" id="category-cpu">
+                    <h4>Selecciona tu Procesador (CPU) <span class="shipping-badge"><i class="fas fa-shipping-fast"></i> Envío incluido</span></h4>
+                    <p class="category-description">El cerebro de tu PC. Determina el rendimiento general en tareas de productividad y gaming.</p>
+                    <div class="component-options" id="cpu-options">
+                        <!-- CPU options will be dynamically generated -->
+                    </div>
+                </div>
+                
+                <!-- GPU Category -->
+                <div class="component-category" id="category-gpu">
+                    <h4>Selecciona tu Tarjeta Gráfica (GPU) <span class="shipping-badge"><i class="fas fa-shipping-fast"></i> Envío incluido</span></h4>
+                    <p class="category-description">Esencial para gaming, edición de video y renderizado 3D. Determina el rendimiento visual.</p>
+                    <div class="component-options" id="gpu-options">
+                        <!-- GPU options will be dynamically generated -->
+                    </div>
+                </div>
+                
+                <!-- RAM Category -->
+                <div class="component-category" id="category-ram">
+                    <h4>Selecciona tu Memoria RAM <span class="shipping-badge"><i class="fas fa-shipping-fast"></i> Envío incluido</span></h4>
+                    <p class="category-description">La memoria de trabajo de tu PC. Más RAM permite multitarea fluida y mejor rendimiento en aplicaciones pesadas.</p>
+                    <div class="component-options" id="ram-options">
+                        <!-- RAM options will be dynamically generated -->
+                    </div>
+                </div>
+                
+                <!-- Storage Category -->
+                <div class="component-category" id="category-storage">
+                    <h4>Selecciona tu Almacenamiento <span class="shipping-badge"><i class="fas fa-shipping-fast"></i> Envío incluido</span></h4>
+                    <p class="category-description">Donde se almacenan tu sistema operativo, programas y archivos. SSD para velocidad, HDD para capacidad.</p>
+                    <div class="component-options" id="storage-options">
+                        <!-- Storage options will be dynamically generated -->
+                    </div>
+                </div>
+                
+                <!-- Motherboard Category -->
+                <div class="component-category" id="category-motherboard">
+                    <h4>Selecciona tu Placa Madre <span class="shipping-badge"><i class="fas fa-shipping-fast"></i> Envío incluido</span></h4>
+                    <p class="category-description">La columna vertebral de tu PC. Conecta todos los componentes y determina compatibilidades futuras.</p>
+                    <div class="component-options" id="motherboard-options">
+                        <!-- Motherboard options will be dynamically generated -->
+                    </div>
+                </div>
+                
+                <!-- PSU Category -->
+                <div class="component-category" id="category-psu">
+                    <h4>Selecciona tu Fuente de Poder (PSU) <span class="shipping-badge"><i class="fas fa-shipping-fast"></i> Envío incluido</span></h4>
+                    <p class="category-description">Proporciona energía estable a todos los componentes. Una buena fuente es clave para estabilidad y durabilidad.</p>
+                    <div class="component-options" id="psu-options">
+                        <!-- PSU options will be dynamically generated -->
+                    </div>
+                </div>
+                
+                <!-- Case Category -->
+                <div class="component-category" id="category-case">
+                    <h4>Selecciona tu Gabinete <span class="shipping-badge"><i class="fas fa-shipping-fast"></i> Envío incluido</span></h4>
+                    <p class="category-description">La carcasa que alberga todos tus componentes. Considera tamaño, flujo de aire y estética.</p>
+                    <div class="component-options" id="case-options">
+                        <!-- Case options will be dynamically generated -->
+                    </div>
+                </div>
+                
+                <div class="builder-navigation">
+                    <button class="builder-btn" id="prev-step" disabled>
+                        <i class="fas fa-arrow-left"></i> Anterior
+                    </button>
+                    
+                    <button class="clear-all-btn" id="clear-all-btn">
+                        <i class="fas fa-trash-alt"></i> Limpiar Todo
+                    </button>
+                    
+                    <button class="builder-btn" id="next-step">
+                        Siguiente <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="builder-summary">
+                <div class="summary-header">
+                    <h4>Resumen de tu PC Personalizado</h4>
+                    <div class="total-price" id="total-price">₲0</div>
+                </div>
+                <div class="summary-details" id="summary-details">
+                    <div class="empty-summary">
+                        <i class="fas fa-pc"></i>
+                        <p>Comienza seleccionando componentes para tu PC personalizado</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Haz clic en cada paso para seleccionar componentes</p>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem; padding: 1rem; background-color: rgba(12, 192, 223, 0.05); border-radius: 5px;">
+                    <p><strong><i class="fas fa-shipping-fast" style="color: var(--success-green);"></i> Envío incluido:</strong> Entregamos tu PC ensamblado en todo Paraguay sin costo adicional</p>
+                    <p><strong><i class="fas fa-shield-alt" style="color: var(--cyan);"></i> Garantía:</strong> 1 año en ensamblaje + garantías individuales de componentes</p>
+                    <p><strong><i class="fas fa-clock" style="color: var(--dark-blue);"></i> Tiempo de ensamblaje:</strong> 2-3 días hábiles</p>
+                </div>
+            </div>
+            <!-- Add this right after the products grid -->
+            <div class="cta-banner" style="text-align: center; margin: 3rem 0; padding: 2rem; background: linear-gradient(135deg, var(--cyan), var(--dark-blue)); border-radius: 10px; color: white;">
+                <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Envíanos tu PC personalizado</h3>
+                <p style="margin-bottom: 1.5rem; opacity: 0.9;">O deja que nuestros expertos construyan el equipo perfecto para ti</p>
+                <a href="custom-pc.html#custom-quote" class="builder-btn" style="background-color: white; color: var(--dark-blue); text-decoration: none; padding: 0.8rem 2rem; border-radius: 5px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-tools"></i> Solicitar PC Personalizado
+                </a>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits fade-in">
+            <div class="section-title">
+                <h2>Beneficios de un PC <span>Personalizado</span></h2>
+                <p>Descubre por qué construir un PC personalizado es la mejor opción.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Componentes a tu Medida</h3>
+                    <p>Elige cada componente según tus necesidades específicas, garantizando compatibilidad y rendimiento óptimo.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Mejor Relación Calidad-Precio</h3>
+                    <p>Evitas pagar por componentes que no necesitas y puedes invertir más en las áreas que realmente importan para tu uso.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h3>Fácil Actualización</h3>
+                    <p>Un PC personalizado está diseñado pensando en futuras actualizaciones, facilitando mejoras cuando lo necesites.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Garantía por Componente</h3>
+                    <p>Cada componente tiene su propia garantía, y además ofrecemos garantía en el ensamblaje y pruebas de estabilidad.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Ensamblaje Profesional</h3>
+                    <p>Nuestros técnicos certificados realizan el ensamblaje con cuidado, incluyendo gestión de cables y pruebas de estrés.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte Personalizado</h3>
+                    <p>Ofrecemos soporte técnico especializado para tu configuración específica, ayudándote a resolver cualquier problema.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Quote Form -->
+        <section class="custom-quote" id="custom-quote">
+            <div class="form-container fade-in">
+                <h2>Solicita una <span>Cotización Personalizada</span></h2>
+                <p>Completa el siguiente formulario y nuestro equipo te contactará para diseñar el PC perfecto para ti.</p>
+                
+                <form id="customPcForm" action="https://formspree.io/f/mrbnwlrw" method="POST">
+                    <input type="hidden" name="_language" value="es">
+                    <input type="hidden" name="_subject" value="Nueva cotización de PC personalizado - DM Electronix">
+                    <input type="hidden" name="_replyto" value="">
+                    <input type="hidden" name="pc_configuration" id="pc-configuration">
+                    <input type="hidden" name="pc_total_price" id="pc-total-price">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Teléfono *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget-range">Presupuesto Aproximado *</label>
+                            <div class="slider-container">
+                                <div class="slider-track"></div>
+                                <div class="slider-thumb" id="budget-thumb"></div>
+                                <div class="slider-value" id="budget-value">₲10.950.000</div>
+                            </div>
+                            <div class="slider-values">
+                                <span>₲1.500.000</span>
+                                <span>₲36.500.000+</span>
+                            </div>
+                            <input type="hidden" id="budget-range" name="budget-range" value="10950000">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Propósito Principal del PC *</label>
+                        <div class="purpose-options">
+                            <div class="purpose-option selected" data-purpose="gaming">
+                                <i class="fas fa-gamepad"></i>
+                                <p>Gaming</p>
+                            </div>
+                            <div class="purpose-option" data-purpose="office">
+                                <i class="fas fa-briefcase"></i>
+                                <p>Oficina/Productividad</p>
+                            </div>
+                            <div class="purpose-option" data-purpose="editing">
+                                <i class="fas fa-video"></i>
+                                <p>Edición Multimedia</p>
+                            </div>
+                            <div class="purpose-option" data-purpose="streaming">
+                                <i class="fas fa-broadcast-tower"></i>
+                                <p>Streaming</p>
+                            </div>
+                            <div class="purpose-option" data-purpose="other">
+                                <i class="fas fa-laptop-code"></i>
+                                <p>Otro</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="purpose" name="purpose" value="gaming">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferences">Preferencias de Componentes</label>
+                        <textarea id="preferences" name="preferences" placeholder="Ej: Prefiero AMD sobre Intel, necesito mínimo 32GB RAM, quiero RGB, etc."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="games-software">Juegos/Software que usarás</label>
+                        <textarea id="games-software" name="games-software" placeholder="Ej: Call of Duty, Adobe Premiere, AutoCAD, etc."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="monitor-resolution">Resolución de tu Monitor</label>
+                        <select id="monitor-resolution" name="monitor-resolution">
+                            <option value="">Selecciona una opción</option>
+                            <option value="1080p">1080p (Full HD)</option>
+                            <option value="1440p">1440p (2K/QHD)</option>
+                            <option value="4k">4K (Ultra HD)</option>
+                            <option value="ultrawide">Ultrawide</option>
+                            <option value="multiple">Múltiples monitores</option>
+                            <option value="none">No tengo monitor aún</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additional-notes">Notas Adicionales</label>
+                        <textarea id="additional-notes" name="additional-notes" placeholder="Cualquier otra información que consideres relevante..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Solicitar Cotización Personalizada
+                    </button>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #666;">Te responderemos en un plazo máximo de 24 horas hábiles.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>DM Electronix</h3>
+                <p>Somos una empresa especializada en servicios técnicos y venta de componentes informáticos. Calidad y profesionalismo desde 2010.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Servicios</h3>
+                <a href="pc-repair.html">Reparación de PCs</a>
+                <a href="laptop-repair.html">Reparación de Laptops</a>
+                <a href="cellphone-repair.html">Reparación de Celulares</a>
+                <a href="custom-pc.html">PCs Personalizados</a>
+                <a href="optimization.html">Optimización de PCs</a>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Aldea N°6, Colonia Fernheim</p>
+                <p><i class="fas fa-phone"></i> +595 981 973988</p>
+                <p><i class="fas fa-envelope"></i> electronixdm@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Lunes a Viernes: 9:00 - 19:00</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Suscríbete para recibir ofertas especiales y novedades tecnológicas.</p>
+                <form id="newsletter-form">
+                    <input type="email" placeholder="Tu correo electrónico" required>
+                    <button type="submit" class="submit-btn" style="margin-top: 10px;">Suscribirse</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 DM Electronix. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-text">Configuración aplicada correctamente</span>
+    </div>
+
+    <script>
+        // Tasa de cambio: 1 USD = 7300 PYG (Paraguayan Guarani)
+        const EXCHANGE_RATE = 7300;
+        
+        // Función para formatear precio en PYG
+        function formatPricePYG(priceUSD) {
+            const pricePYG = Math.round(priceUSD * EXCHANGE_RATE);
+            return `₲${pricePYG.toLocaleString('es-PY')}`;
+        }
+        
+        // Función para formatear precio simple (sin símbolo)
+        function formatPriceSimple(priceUSD) {
+            return Math.round(priceUSD * EXCHANGE_RATE);
+        }
+        
+        // Datos de componentes (ampliados)
+        const components = {
+            cpu: [
+                { id: "cpu-1", name: "AMD Ryzen 5 5600X", price: 299.99, description: "6 núcleos, 12 hilos - 3.7GHz base, 4.6GHz turbo", specs: { cores: "6", threads: "12", socket: "AM4", cache: "32MB L3", tdp: "65W" }, compatibility: { socket: "AM4", chipset: ["B550", "X570", "A520"] } },
+                { id: "cpu-2", name: "Intel Core i5 13600K", price: 349.99, description: "14 núcleos (6P+8E), 20 hilos - Hasta 5.1GHz", specs: { cores: "14", threads: "20", socket: "LGA1700", cache: "24MB L3", tdp: "125W" }, compatibility: { socket: "LGA1700", chipset: ["B760", "Z790", "H770"] } },
+                { id: "cpu-3", name: "AMD Ryzen 7 5800X", price: 449.99, description: "8 núcleos, 16 hilos - 3.8GHz base, 4.7GHz turbo", specs: { cores: "8", threads: "16", socket: "AM4", cache: "32MB L3", tdp: "105W" }, compatibility: { socket: "AM4", chipset: ["B550", "X570"] } },
+                { id: "cpu-4", name: "Intel Core i7 13700K", price: 599.99, description: "16 núcleos (8P+8E), 24 hilos - Hasta 5.4GHz", specs: { cores: "16", threads: "24", socket: "LGA1700", cache: "30MB L3", tdp: "125W" }, compatibility: { socket: "LGA1700", chipset: ["Z790", "B760"] } },
+                { id: "cpu-5", name: "AMD Ryzen 5 7600X", price: 299.99, description: "6 núcleos, 12 hilos - 4.7GHz base, 5.3GHz turbo", specs: { cores: "6", threads: "12", socket: "AM5", cache: "32MB L3", tdp: "105W" }, compatibility: { socket: "AM5", chipset: ["B650", "X670"] } },
+                { id: "cpu-6", name: "Intel Core i3 13100F", price: 149.99, description: "4 núcleos, 8 hilos - Hasta 4.5GHz", specs: { cores: "4", threads: "8", socket: "LGA1700", cache: "12MB L3", tdp: "58W" }, compatibility: { socket: "LGA1700", chipset: ["H610", "B760"] } }
+            ],
+            gpu: [
+                { id: "gpu-1", name: "NVIDIA RTX 4060 8GB", price: 399.99, description: "DLSS 3, 8GB GDDR6 - Ideal para 1080p gaming", specs: { memory: "8GB GDDR6", bus: "128-bit", power: "115W", ports: "3x DP, 1x HDMI" }, compatibility: { pcie: "4.0", power: "1x 8-pin" } },
+                { id: "gpu-2", name: "AMD Radeon RX 7600 8GB", price: 349.99, description: "8GB GDDR6, FSR 3 - Excelente valor", specs: { memory: "8GB GDDR6", bus: "128-bit", power: "165W", ports: "2x DP, 2x HDMI" }, compatibility: { pcie: "4.0", power: "1x 8-pin" } },
+                { id: "gpu-3", name: "NVIDIA RTX 4070 12GB", price: 599.99, description: "12GB GDDR6X, DLSS 3 - Perfecta para 1440p", specs: { memory: "12GB GDDR6X", bus: "192-bit", power: "200W", ports: "3x DP, 1x HDMI" }, compatibility: { pcie: "4.0", power: "1x 16-pin" } },
+                { id: "gpu-4", name: "AMD Radeon RX 7800 XT 16GB", price: 549.99, description: "16GB GDDR6, FSR 3 - Alto rendimiento 1440p/4K", specs: { memory: "16GB GDDR6", bus: "256-bit", power: "263W", ports: "2x DP, 2x HDMI" }, compatibility: { pcie: "4.0", power: "2x 8-pin" } },
+                { id: "gpu-5", name: "NVIDIA RTX 4090 24GB", price: 1599.99, description: "24GB GDDR6X, DLSS 3 - Máximo rendimiento 4K", specs: { memory: "24GB GDDR6X", bus: "384-bit", power: "450W", ports: "3x DP, 1x HDMI" }, compatibility: { pcie: "4.0", power: "1x 16-pin" } },
+                { id: "gpu-6", name: "Integrada (CPU)", price: 0, description: "Gráficos integrados del procesador", specs: { memory: "Compartida", bus: "N/A", power: "Incluido en CPU", ports: "Depende de placa madre" }, compatibility: { pcie: "N/A", power: "N/A" } }
+            ],
+            ram: [
+                { id: "ram-1", name: "16GB DDR4 3200MHz (2x8GB)", price: 79.99, description: "Dual channel, CL16 - Ideal para gaming", specs: { capacity: "16GB", type: "DDR4", speed: "3200MHz", latency: "CL16", modules: "2x8GB" }, compatibility: { type: "DDR4", slots: 2 } },
+                { id: "ram-2", name: "32GB DDR4 3600MHz (2x16GB)", price: 129.99, description: "Dual channel, CL18 - Excelente para multitarea", specs: { capacity: "32GB", type: "DDR4", speed: "3600MHz", latency: "CL18", modules: "2x16GB" }, compatibility: { type: "DDR4", slots: 2 } },
+                { id: "ram-3", name: "64GB DDR4 3200MHz (2x32GB)", price: 239.99, description: "Dual channel, CL16 - Para estaciones de trabajo", specs: { capacity: "64GB", type: "DDR4", speed: "3200MHz", latency: "CL16", modules: "2x32GB" }, compatibility: { type: "DDR4", slots: 2 } },
+                { id: "ram-4", name: "32GB DDR5 5600MHz (2x16GB)", price: 149.99, description: "Dual channel, CL36 - Lo último en tecnología", specs: { capacity: "32GB", type: "DDR5", speed: "5600MHz", latency: "CL36", modules: "2x16GB" }, compatibility: { type: "DDR5", slots: 2 } },
+                { id: "ram-5", name: "64GB DDR5 6000MHz (2x32GB)", price: 299.99, description: "Dual channel, CL30 - Máximo rendimiento", specs: { capacity: "64GB", type: "DDR5", speed: "6000MHz", latency: "CL30", modules: "2x32GB" }, compatibility: { type: "DDR5", slots: 2 } },
+                { id: "ram-6", name: "16GB DDR5 5200MHz (2x8GB)", price: 99.99, description: "Dual channel, CL40 - Entrada a DDR5", specs: { capacity: "16GB", type: "DDR5", speed: "5200MHz", latency: "CL40", modules: "2x8GB" }, compatibility: { type: "DDR5", slots: 2 } }
+            ],
+            storage: [
+                { id: "storage-1", name: "512GB NVMe SSD", price: 49.99, description: "PCIe 3.0 - Para sistema operativo y programas", specs: { capacity: "512GB", type: "NVMe SSD", interface: "PCIe 3.0", read: "3500MB/s", write: "3000MB/s" }, compatibility: { interface: "M.2 NVMe" } },
+                { id: "storage-2", name: "1TB NVMe SSD", price: 89.99, description: "PCIe 4.0 - Excelente velocidad y capacidad", specs: { capacity: "1TB", type: "NVMe SSD", interface: "PCIe 4.0", read: "7000MB/s", write: "5000MB/s" }, compatibility: { interface: "M.2 NVMe" } },
+                { id: "storage-3", name: "2TB NVMe SSD", price: 149.99, description: "PCIe 4.0 - Para gamers y creadores de contenido", specs: { capacity: "2TB", type: "NVMe SSD", interface: "PCIe 4.0", read: "7300MB/s", write: "6900MB/s" }, compatibility: { interface: "M.2 NVMe" } },
+                { id: "storage-4", name: "4TB HDD 7200RPM", price: 99.99, description: "Almacenamiento masivo - Para archivos y juegos", specs: { capacity: "4TB", type: "HDD", interface: "SATA 6Gb/s", speed: "7200RPM", cache: "256MB" }, compatibility: { interface: "SATA" } },
+                { id: "storage-5", name: "1TB SSD + 2TB HDD", price: 129.99, description: "Combinación perfecta - Velocidad + capacidad", specs: { capacity: "3TB total", type: "SSD + HDD", interface: "NVMe + SATA", read: "SSD: 3500MB/s", write: "SSD: 3000MB/s" }, compatibility: { interface: "M.2 NVMe + SATA" } },
+                { id: "storage-6", name: "2TB SSD NVMe + 4TB HDD", price: 239.99, description: "Máximo almacenamiento - Para profesionales", specs: { capacity: "6TB total", type: "SSD + HDD", interface: "NVMe + SATA", read: "SSD: 7300MB/s", write: "SSD: 6900MB/s" }, compatibility: { interface: "M.2 NVMe + SATA" } }
+            ],
+            motherboard: [
+                { id: "motherboard-1", name: "MSI B550-A PRO", price: 179.99, description: "AMD AM4, PCIe 4.0 - Excelente relación calidad-precio", specs: { socket: "AM4", chipset: "B550", ram: "DDR4", pcie: "4.0", m2: "2 slots" }, compatibility: { socket: "AM4", ramType: "DDR4" } },
+                { id: "motherboard-2", name: "ASUS TUF GAMING Z790-PLUS", price: 299.99, description: "Intel LGA1700, DDR5 - Para gaming de alto rendimiento", specs: { socket: "LGA1700", chipset: "Z790", ram: "DDR5", pcie: "5.0", m2: "4 slots" }, compatibility: { socket: "LGA1700", ramType: "DDR5" } },
+                { id: "motherboard-3", name: "GIGABYTE B650 GAMING X AX", price: 229.99, description: "AMD AM5, WiFi 6E - Plataforma de última generación", specs: { socket: "AM5", chipset: "B650", ram: "DDR5", pcie: "4.0", m2: "3 slots" }, compatibility: { socket: "AM5", ramType: "DDR5" } },
+                { id: "motherboard-4", name: "ASRock B760M PRO RS", price: 149.99, description: "Intel LGA1700, mATX - Compacta y funcional", specs: { socket: "LGA1700", chipset: "B760", ram: "DDR5", pcie: "4.0", m2: "2 slots" }, compatibility: { socket: "LGA1700", ramType: "DDR5" } },
+                { id: "motherboard-5", name: "ASUS PRIME A520M-K", price: 89.99, description: "AMD AM4, mATX - Económica y confiable", specs: { socket: "AM4", chipset: "A520", ram: "DDR4", pcie: "3.0", m2: "1 slot" }, compatibility: { socket: "AM4", ramType: "DDR4" } },
+                { id: "motherboard-6", name: "MSI MEG Z790 GODLIKE", price: 899.99, description: "Intel LGA1700, E-ATX - Placa insignia para entusiastas", specs: { socket: "LGA1700", chipset: "Z790", ram: "DDR5", pcie: "5.0", m2: "5 slots" }, compatibility: { socket: "LGA1700", ramType: "DDR5" } }
+            ],
+            psu: [
+                { id: "psu-1", name: "Corsair CV550 550W 80+ Bronze", price: 69.99, description: "550W, 80+ Bronze - Para builds básicas", specs: { wattage: "550W", certification: "80+ Bronze", modular: "No", connectors: "1x CPU 8-pin, 1x PCIe 8-pin" }, compatibility: { wattage: "550W" } },
+                { id: "psu-2", name: "EVGA 650 B5 650W 80+ Bronze", price: 89.99, description: "650W, 80+ Bronze Modular - Excelente valor", specs: { wattage: "650W", certification: "80+ Bronze", modular: "Semi", connectors: "2x CPU 8-pin, 2x PCIe 8-pin" }, compatibility: { wattage: "650W" } },
+                { id: "psu-3", name: "Seasonic FOCUS GX-750 750W 80+ Gold", price: 129.99, description: "750W, 80+ Gold Modular - Para gaming", specs: { wattage: "750W", certification: "80+ Gold", modular: "Full", connectors: "2x CPU 8-pin, 4x PCIe 8-pin" }, compatibility: { wattage: "750W" } },
+                { id: "psu-4", name: "Corsair RM850x 850W 80+ Gold", price: 149.99, description: "850W, 80+ Gold Modular - Alta calidad", specs: { wattage: "850W", certification: "80+ Gold", modular: "Full", connectors: "2x CPU 8-pin, 4x PCIe 8-pin" }, compatibility: { wattage: "850W" } },
+                { id: "psu-5", name: "be quiet! Dark Power 13 1000W 80+ Titanium", price: 299.99, description: "1000W, 80+ Titanium - Máxima eficiencia", specs: { wattage: "1000W", certification: "80+ Titanium", modular: "Full", connectors: "2x CPU 8-pin, 6x PCIe 8-pin" }, compatibility: { wattage: "1000W" } },
+                { id: "psu-6", name: "Thermaltake Toughpower GF3 1200W 80+ Gold", price: 249.99, description: "1200W, 80+ Gold, PCIe 5.0 - Para builds extremas", specs: { wattage: "1200W", certification: "80+ Gold", modular: "Full", connectors: "2x CPU 8-pin, 6x PCIe (incluye 12VHPWR)" }, compatibility: { wattage: "1200W" } }
+            ],
+            case: [
+                { id: "case-1", name: "NZXT H510 Flow", price: 89.99, description: "Mid Tower, Mesh frontal - Excelente flujo de aire", specs: { size: "Mid Tower", fans: "2x 120mm", radiator: "240mm", gpu: "365mm", psu: "ATX" }, compatibility: { size: "Mid Tower" } },
+                { id: "case-2", name: "Corsair 4000D Airflow", price: 104.99, description: "Mid Tower, Diseño airflow - Muy popular", specs: { size: "Mid Tower", fans: "2x 120mm", radiator: "360mm", gpu: "360mm", psu: "ATX" }, compatibility: { size: "Mid Tower" } },
+                { id: "case-3", name: "Lian Li O11 Dynamic Mini", price: 119.99, description: "Mini Tower, Diseño dual-cámara - Para builds compactas", specs: { size: "Mini Tower", fans: "0", radiator: "280mm", gpu: "395mm", psu: "SFX" }, compatibility: { size: "Mini Tower" } },
+                { id: "case-4", name: "Fractal Design Meshify 2 Compact", price: 139.99, description: "Mid Tower, Filtros de polvo - Calidad premium", specs: { size: "Mid Tower", fans: "2x 140mm", radiator: "360mm", gpu: "360mm", psu: "ATX" }, compatibility: { size: "Mid Tower" } },
+                { id: "case-5", name: "Cooler Master MasterBox Q300L", price: 49.99, description: "Micro ATX, Economica - Ideal para presupuestos ajustados", specs: { size: "Micro ATX", fans: "1x 120mm", radiator: "120mm", gpu: "360mm", psu: "ATX" }, compatibility: { size: "Micro ATX" } },
+                { id: "case-6", name: "Phanteks Eclipse P600S", price: 169.99, description: "Full Tower, Silenciosa - Para estaciones de trabajo", specs: { size: "Full Tower", fans: "3x 140mm", radiator: "420mm", gpu: "490mm", psu: "ATX" }, compatibility: { size: "Full Tower" } }
+            ]
+        };
+
+        // Configuraciones predefinidas
+        const presets = {
+            office: {
+                name: "PC de Oficina",
+                cpu: "cpu-6", // Intel Core i3 13100F
+                gpu: "gpu-6", // Integrada
+                ram: "ram-1", // 16GB DDR4 3200MHz
+                storage: "storage-1", // 512GB NVMe SSD
+                motherboard: "motherboard-5", // ASUS PRIME A520M-K
+                psu: "psu-1", // Corsair CV550 550W
+                case: "case-5" // Cooler Master MasterBox Q300L
+            },
+            gaming: {
+                name: "PC Gaming",
+                cpu: "cpu-3", // AMD Ryzen 7 5800X
+                gpu: "gpu-3", // NVIDIA RTX 4070 12GB
+                ram: "ram-2", // 32GB DDR4 3600MHz
+                storage: "storage-5", // 1TB SSD + 2TB HDD
+                motherboard: "motherboard-1", // MSI B550-A PRO
+                psu: "psu-3", // Seasonic FOCUS GX-750 750W
+                case: "case-2" // Corsair 4000D Airflow
+            },
+            editing: {
+                name: "PC para Edición",
+                cpu: "cpu-4", // Intel Core i7 13700K
+                gpu: "gpu-4", // AMD Radeon RX 7800 XT 16GB
+                ram: "ram-3", // 64GB DDR4 3200MHz
+                storage: "storage-6", // 2TB SSD NVMe + 4TB HDD
+                motherboard: "motherboard-2", // ASUS TUF GAMING Z790-PLUS
+                psu: "psu-4", // Corsair RM850x 850W
+                case: "case-6" // Phanteks Eclipse P600S
+            }
+        };
+
+        // Variables globales
+        let currentStep = 1;
+        let selectedComponents = {
+            cpu: null,
+            gpu: null,
+            ram: null,
+            storage: null,
+            motherboard: null,
+            psu: null,
+            case: null
+        };
+        let currentPreset = null;
+
+        // DOM Elements
+        const builderSteps = document.querySelectorAll('.builder-step');
+        const componentCategories = document.querySelectorAll('.component-category');
+        const prevStepBtn = document.getElementById('prev-step');
+        const nextStepBtn = document.getElementById('next-step');
+        const clearAllBtn = document.getElementById('clear-all-btn');
+        const totalPriceEl = document.getElementById('total-price');
+        const summaryDetails = document.getElementById('summary-details');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+        const compatibilityWarning = document.getElementById('compatibility-warning');
+        const warningText = document.getElementById('warning-text');
+        const progressFill = document.getElementById('progress-fill');
+        const progressPercentage = document.getElementById('progress-percentage');
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeComponentOptions();
+            setupEventListeners();
+            updateBuilderSteps();
+            updateSummary();
+            updateProgress();
+            
+            // Inicializar slider de presupuesto
+            initializeBudgetSlider();
+        });
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            // Menú hamburguesa
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+            
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Presupuesto selector
+            document.querySelectorAll('.budget-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.budget-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Configuraciones predefinidas
+            document.querySelectorAll('.config-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const preset = this.getAttribute('data-preset');
+                    applyPreset(preset);
+                });
+            });
+            
+            // También permitir clic en toda la tarjeta de configuración
+            document.querySelectorAll('.config-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    // Solo aplicar si no se hizo clic en el botón directamente
+                    if (!e.target.classList.contains('config-button') && !e.target.closest('.config-button')) {
+                        const preset = this.getAttribute('data-preset');
+                        applyPreset(preset);
+                    }
+                });
+            });
+            
+            // Navegación del builder
+            prevStepBtn.addEventListener('click', goToPreviousStep);
+            nextStepBtn.addEventListener('click', goToNextStep);
+            clearAllBtn.addEventListener('click', clearAllComponents);
+            
+            // Pasos del builder
+            builderSteps.forEach(step => {
+                step.addEventListener('click', function() {
+                    const stepNumber = parseInt(this.getAttribute('data-step'));
+                    goToStep(stepNumber);
+                });
+            });
+            
+            // Formulario de cotización
+            document.getElementById('customPcForm').addEventListener('submit', handleFormSubmit);
+            
+            // Formulario de newsletter
+            document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                showNotification(`¡Gracias por suscribirte con el correo: ${email}! Te enviaremos nuestras mejores ofertas.`, 'success');
+                this.reset();
+            });
+            
+            // Propósito del formulario
+            document.querySelectorAll('.purpose-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.purpose-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    const purpose = this.getAttribute('data-purpose');
+                    document.getElementById('purpose').value = purpose;
+                });
+            });
+        }
+
+        // Inicializar opciones de componentes
+        function initializeComponentOptions() {
+            // Inicializar cada categoría
+            Object.keys(components).forEach(category => {
+                const container = document.getElementById(`${category}-options`);
+                if (!container) return;
+                
+                components[category].forEach(component => {
+                    const option = createComponentOption(component, category);
+                    container.appendChild(option);
+                });
+            });
+        }
+
+        // Crear opción de componente
+        function createComponentOption(component, category) {
+            const div = document.createElement('div');
+            div.className = 'component-option';
+            div.id = `option-${component.id}`;
+            div.setAttribute('data-id', component.id);
+            div.setAttribute('data-category', category);
+            div.setAttribute('data-price', component.price);
+            
+            // Generar especificaciones HTML
+            const specsHTML = Object.entries(component.specs).map(([key, value]) => `
+                <div class="spec-item">
+                    <span class="spec-label">${key}:</span>
+                    <span class="spec-value">${value}</span>
+                </div>
+            `).join('');
+            
+            div.innerHTML = `
+                <h5>${component.name}</h5>
+                <p class="component-description">${component.description}</p>
+                <div class="component-price">${formatPricePYG(component.price)}</div>
+                <div class="component-specs">${specsHTML}</div>
+                <div class="component-compatibility">Haz clic para seleccionar</div>
+                <div class="component-warning"></div>
+            `;
+            
+            div.addEventListener('click', function() {
+                selectComponent(component.id, category);
+            });
+            
+            return div;
+        }
+
+        // Seleccionar componente
+        function selectComponent(componentId, category) {
+            // Deseleccionar todas las opciones en esta categoría
+            document.querySelectorAll(`#${category}-options .component-option`).forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Seleccionar la opción actual
+            const selectedOption = document.getElementById(`option-${componentId}`);
+            if (selectedOption) {
+                selectedOption.classList.add('selected');
+            }
+            
+            // Actualizar componente seleccionado
+            selectedComponents[category] = componentId;
+            
+            // Actualizar resumen
+            updateSummary();
+            
+            // Actualizar progreso
+            updateProgress();
+            
+            // Verificar compatibilidad
+            checkCompatibility();
+            
+            // Mostrar notificación si no es parte de un preset
+            if (!currentPreset) {
+                const component = getComponentById(componentId, category);
+                showNotification(`${component.name} seleccionado`, 'success');
+            }
+        }
+
+        // Remover componente
+        function removeComponent(category) {
+            // Deseleccionar opción en la UI
+            if (selectedComponents[category]) {
+                const selectedOption = document.getElementById(`option-${selectedComponents[category]}`);
+                if (selectedOption) {
+                    selectedOption.classList.remove('selected');
+                }
+                
+                const component = getComponentById(selectedComponents[category], category);
+                
+                // Eliminar componente seleccionado
+                selectedComponents[category] = null;
+                
+                // Actualizar resumen
+                updateSummary();
+                
+                // Actualizar progreso
+                updateProgress();
+                
+                // Verificar compatibilidad
+                checkCompatibility();
+                
+                // Mostrar notificación
+                if (component) {
+                    showNotification(`${component.name} eliminado`, 'info');
+                }
+            }
+        }
+
+        // Limpiar todos los componentes
+        function clearAllComponents() {
+            // Preguntar confirmación
+            if (!confirm("¿Estás seguro de que quieres eliminar todos los componentes seleccionados?")) {
+                return;
+            }
+            
+            // Deseleccionar todas las opciones en todas las categorías
+            Object.keys(selectedComponents).forEach(category => {
+                if (selectedComponents[category]) {
+                    const selectedOption = document.getElementById(`option-${selectedComponents[category]}`);
+                    if (selectedOption) {
+                        selectedOption.classList.remove('selected');
+                    }
+                }
+                selectedComponents[category] = null;
+            });
+            
+            // Resetear preset actual
+            currentPreset = null;
+            
+            // Actualizar resumen
+            updateSummary();
+            
+            // Actualizar progreso
+            updateProgress();
+            
+            // Ocultar advertencia de compatibilidad
+            compatibilityWarning.classList.remove('show');
+            
+            // Mostrar notificación
+            showNotification("Todos los componentes han sido eliminados", 'info');
+        }
+
+        // Obtener componente por ID
+        function getComponentById(componentId, category) {
+            return components[category].find(comp => comp.id === componentId);
+        }
+
+        // Aplicar preset
+        function applyPreset(presetName) {
+            if (!presets[presetName]) return;
+            
+            currentPreset = presetName;
+            const preset = presets[presetName];
+            
+            // Aplicar cada componente del preset
+            Object.keys(preset).forEach(category => {
+                if (category !== 'name' && preset[category]) {
+                    selectComponent(preset[category], category);
+                }
+            });
+            
+            // Actualizar presupuesto selector
+            let budgetOption;
+            if (presetName === 'office') budgetOption = document.querySelector('[data-budget="low"]');
+            else if (presetName === 'gaming') budgetOption = document.querySelector('[data-budget="high"]');
+            else if (presetName === 'editing') budgetOption = document.querySelector('[data-budget="premium"]');
+            
+            if (budgetOption) {
+                document.querySelectorAll('.budget-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                budgetOption.classList.add('selected');
+            }
+            
+            // Ir al primer paso del builder
+            goToStep(1);
+            
+            // Mostrar notificación
+            showNotification(`Configuración "${preset.name}" aplicada correctamente. Puedes modificar componentes individualmente.`, 'success');
+        }
+
+        // Verificar compatibilidad
+        function checkCompatibility() {
+            let warnings = [];
+            
+            // Verificar CPU y placa madre
+            if (selectedComponents.cpu && selectedComponents.motherboard) {
+                const cpu = getComponentById(selectedComponents.cpu, 'cpu');
+                const motherboard = getComponentById(selectedComponents.motherboard, 'motherboard');
+                
+                if (cpu && motherboard) {
+                    if (cpu.compatibility.socket !== motherboard.compatibility.socket) {
+                        warnings.push(`El procesador ${cpu.name} no es compatible con la placa madre ${motherboard.name}. Los sockets no coinciden (${cpu.compatibility.socket} vs ${motherboard.compatibility.socket}).`);
+                    }
+                }
+            }
+            
+            // Verificar RAM y placa madre
+            if (selectedComponents.ram && selectedComponents.motherboard) {
+                const ram = getComponentById(selectedComponents.ram, 'ram');
+                const motherboard = getComponentById(selectedComponents.motherboard, 'motherboard');
+                
+                if (ram && motherboard) {
+                    if (ram.compatibility.type !== motherboard.compatibility.ramType) {
+                        warnings.push(`La memoria RAM ${ram.name} (${ram.compatibility.type}) no es compatible con la placa madre ${motherboard.name} (${motherboard.compatibility.ramType}).`);
+                    }
+                }
+            }
+            
+            // Verificar fuente de poder y GPU
+            if (selectedComponents.psu && selectedComponents.gpu) {
+                const psu = getComponentById(selectedComponents.psu, 'psu');
+                const gpu = getComponentById(selectedComponents.gpu, 'gpu');
+                
+                if (psu && gpu && gpu.id !== 'gpu-6') { // No verificar si es gráficos integrados
+                    // Estimación de consumo de energía
+                    const estimatedPower = estimatePowerConsumption();
+                    const psuWattage = parseInt(psu.specs.wattage);
+                    
+                    if (estimatedPower > psuWattage * 0.8) { // Usar 80% como margen seguro
+                        warnings.push(`La fuente de poder ${psu.name} (${psuWattage}W) podría ser insuficiente para el sistema estimado (${estimatedPower}W). Se recomienda una fuente más potente.`);
+                    }
+                }
+            }
+            
+            // Mostrar advertencias
+            if (warnings.length > 0) {
+                warningText.innerHTML = warnings.join('<br>');
+                compatibilityWarning.classList.add('show');
+            } else {
+                compatibilityWarning.classList.remove('show');
+            }
+        }
+
+        // Estimar consumo de energía
+        function estimatePowerConsumption() {
+            let totalPower = 0;
+            
+            // CPU
+            if (selectedComponents.cpu) {
+                const cpu = getComponentById(selectedComponents.cpu, 'cpu');
+                if (cpu && cpu.specs.tdp) {
+                    totalPower += parseInt(cpu.specs.tdp);
+                }
+            }
+            
+            // GPU
+            if (selectedComponents.gpu) {
+                const gpu = getComponentById(selectedComponents.gpu, 'gpu');
+                if (gpu && gpu.specs.power && gpu.id !== 'gpu-6') {
+                    totalPower += parseInt(gpu.specs.power);
+                }
+            }
+            
+            // Otros componentes (estimación)
+            totalPower += 100; // Placa madre, RAM, almacenamiento, ventiladores
+            
+            return totalPower;
+        }
+
+        // Actualizar progreso
+        function updateProgress() {
+            let selectedCount = 0;
+            const totalCategories = Object.keys(selectedComponents).length;
+            
+            // Contar componentes seleccionados
+            Object.values(selectedComponents).forEach(component => {
+                if (component !== null) selectedCount++;
+            });
+            
+            // Calcular porcentaje
+            const percentage = Math.round((selectedCount / totalCategories) * 100);
+            
+            // Actualizar UI
+            progressFill.style.width = `${percentage}%`;
+            progressPercentage.textContent = `${percentage}%`;
+        }
+
+        // Navegación entre pasos
+        function goToPreviousStep() {
+            if (currentStep > 1) {
+                goToStep(currentStep - 1);
+            }
+        }
+
+        function goToNextStep() {
+            if (currentStep < 7) {
+                goToStep(currentStep + 1);
+            }
+        }
+
+        function goToStep(step) {
+            currentStep = step;
+            updateBuilderSteps();
+            
+            // Actualizar botones de navegación
+            prevStepBtn.disabled = currentStep === 1;
+            nextStepBtn.disabled = currentStep === 7;
+            if (currentStep === 7) {
+                nextStepBtn.innerHTML = 'Completar <i class="fas fa-check"></i>';
+            } else {
+                nextStepBtn.innerHTML = 'Siguiente <i class="fas fa-arrow-right"></i>';
+            }
+        }
+
+        // Actualizar pasos del builder
+        function updateBuilderSteps() {
+            // Actualizar estado activo
+            builderSteps.forEach(step => {
+                const stepNumber = parseInt(step.getAttribute('data-step'));
+                if (stepNumber === currentStep) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+            
+            // Mostrar categoría activa
+            componentCategories.forEach(category => {
+                category.classList.remove('active');
+            });
+            
+            const activeCategory = document.getElementById(`category-${getCategoryByStep(currentStep)}`);
+            if (activeCategory) {
+                activeCategory.classList.add('active');
+            }
+        }
+
+        // Obtener categoría por paso
+        function getCategoryByStep(step) {
+            const categories = ['cpu', 'gpu', 'ram', 'storage', 'motherboard', 'psu', 'case'];
+            return categories[step - 1];
+        }
+
+        // Actualizar resumen
+        function updateSummary() {
+            let totalPriceUSD = 0;
+            let summaryHTML = '';
+            let componentCount = 0;
+            
+            // Calcular precio total y generar HTML
+            Object.keys(selectedComponents).forEach(category => {
+                if (selectedComponents[category]) {
+                    const component = getComponentById(selectedComponents[category], category);
+                    if (component) {
+                        totalPriceUSD += component.price;
+                        componentCount++;
+                        
+                        summaryHTML += `
+                            <div class="summary-item" data-category="${category}">
+                                <div class="summary-item-name">
+                                    <strong>${getCategoryName(category)}:</strong>
+                                    <span>${component.name}</span>
+                                </div>
+                                <div class="summary-item-price">${formatPricePYG(component.price)}</div>
+                                <button class="remove-component" data-category="${category}" title="Eliminar componente">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        `;
+                    }
+                }
+            });
+            
+            // Mostrar resumen
+            if (componentCount > 0) {
+                // Agregar fila de total
+                summaryHTML += `
+                    <div class="summary-item">
+                        <div class="summary-item-name">
+                            <strong>Total:</strong>
+                            <span><i class="fas fa-shipping-fast" style="color: var(--success-green);"></i> Envío incluido</span>
+                        </div>
+                        <div class="summary-item-price">${formatPricePYG(totalPriceUSD)}</div>
+                    </div>
+                `;
+                
+                summaryDetails.innerHTML = summaryHTML;
+                
+                // Agregar event listeners a los botones de eliminar
+                document.querySelectorAll('.remove-component').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.stopPropagation(); // Prevenir que el clic se propague al elemento padre
+                        const category = this.getAttribute('data-category');
+                        removeComponent(category);
+                    });
+                });
+                
+                // También permitir eliminar haciendo clic en el elemento (excepto el total)
+                document.querySelectorAll('.summary-item:not(:last-child)').forEach(item => {
+                    item.addEventListener('dblclick', function() {
+                        const category = this.getAttribute('data-category');
+                        removeComponent(category);
+                    });
+                });
+            } else {
+                summaryDetails.innerHTML = `
+                    <div class="empty-summary">
+                        <i class="fas fa-pc"></i>
+                        <p>Comienza seleccionando componentes para tu PC personalizado</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Haz clic en cada paso para seleccionar componentes</p>
+                    </div>
+                `;
+            }
+            
+            // Actualizar precio total
+            totalPriceEl.textContent = formatPricePYG(totalPriceUSD);
+            
+            // Actualizar configuración en el formulario
+            updateFormConfiguration();
+        }
+
+        // Obtener nombre legible de categoría
+        function getCategoryName(category) {
+            const names = {
+                cpu: 'Procesador',
+                gpu: 'Tarjeta Gráfica',
+                ram: 'Memoria RAM',
+                storage: 'Almacenamiento',
+                motherboard: 'Placa Madre',
+                psu: 'Fuente de Poder',
+                case: 'Gabinete'
+            };
+            return names[category] || category;
+        }
+
+        // Actualizar configuración en el formulario
+        function updateFormConfiguration() {
+            let configText = '';
+            
+            Object.keys(selectedComponents).forEach(category => {
+                if (selectedComponents[category]) {
+                    const component = getComponentById(selectedComponents[category], category);
+                    if (component) {
+                        configText += `${getCategoryName(category)}: ${component.name}\n`;
+                    }
+                }
+            });
+            
+            // Calcular precio total
+            let totalPriceUSD = 0;
+            Object.keys(selectedComponents).forEach(category => {
+                if (selectedComponents[category]) {
+                    const component = getComponentById(selectedComponents[category], category);
+                    if (component) {
+                        totalPriceUSD += component.price;
+                    }
+                }
+            });
+            
+            document.getElementById('pc-configuration').value = configText;
+            document.getElementById('pc-total-price').value = formatPricePYG(totalPriceUSD);
+        }
+
+        // Inicializar slider de presupuesto
+        function initializeBudgetSlider() {
+            const budgetThumb = document.getElementById('budget-thumb');
+            const budgetValue = document.getElementById('budget-value');
+            const budgetInput = document.getElementById('budget-range');
+            const sliderTrack = document.querySelector('.slider-track');
+            
+            let isDragging = false;
+            
+            // Función para actualizar la posición del slider
+            function updateSliderPosition(clientX) {
+                const trackRect = sliderTrack.getBoundingClientRect();
+                let newX = clientX - trackRect.left;
+                
+                // Limitar al rango del track
+                newX = Math.max(0, Math.min(newX, trackRect.width));
+                
+                // Calcular el valor del presupuesto
+                const percentage = newX / trackRect.width;
+                const minBudget = 1500000; // ₲1.500.000
+                const maxBudget = 36500000; // ₲36.500.000
+                let budget = Math.round(minBudget + percentage * (maxBudget - minBudget));
+                
+                // Ajustar a incrementos de 500.000
+                budget = Math.round(budget / 500000) * 500000;
+                
+                // Actualizar posición visual
+                budgetThumb.style.left = `${percentage * 100}%`;
+                
+                // Actualizar valor mostrado
+                budgetValue.textContent = `₲${budget.toLocaleString('es-PY')}`;
+                budgetValue.style.left = `${percentage * 100}%`;
+                
+                // Actualizar campo oculto
+                budgetInput.value = budget;
+            }
+            
+            // Eventos del slider
+            budgetThumb.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            });
+            
+            sliderTrack.addEventListener('click', (e) => {
+                updateSliderPosition(e.clientX);
+            });
+            
+            function onMouseMove(e) {
+                if (!isDragging) return;
+                updateSliderPosition(e.clientX);
+            }
+            
+            function onMouseUp() {
+                isDragging = false;
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            }
+            
+            // También para dispositivos táctiles
+            budgetThumb.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                document.addEventListener('touchmove', onTouchMove);
+                document.addEventListener('touchend', onTouchEnd);
+            });
+            
+            function onTouchMove(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+                updateSliderPosition(e.touches[0].clientX);
+            }
+            
+            function onTouchEnd() {
+                isDragging = false;
+                document.removeEventListener('touchmove', onTouchMove);
+                document.removeEventListener('touchend', onTouchEnd);
+            }
+        }
+
+        // Manejar envío del formulario
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Validar que haya al menos un componente seleccionado
+            const hasComponents = Object.values(selectedComponents).some(comp => comp !== null);
+            if (!hasComponents) {
+                showNotification('Por favor, selecciona al menos un componente antes de solicitar una cotización.', 'error');
+                return;
+            }
+            
+            // Actualizar el campo hidden _replyto con el email del usuario
+            const emailInput = document.getElementById('email');
+            document.querySelector('input[name="_replyto"]').value = emailInput.value;
+            
+            // Cambiar texto del botón mientras se envía
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            
+            // Enviar formulario usando Fetch API para manejar la respuesta
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    showNotification('¡Cotización enviada exitosamente! Te contactaremos dentro de las próximas 24 horas.', 'success');
+                    form.reset();
+                    
+                    // Resetear valores del formulario
+                    document.querySelectorAll('.purpose-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    document.querySelector('.purpose-option[data-purpose="gaming"]').classList.add('selected');
+                    document.getElementById('purpose').value = "gaming";
+                    
+                    // Resetear slider
+                    const budgetThumb = document.getElementById('budget-thumb');
+                    const budgetValue = document.getElementById('budget-value');
+                    const budgetInput = document.getElementById('budget-range');
+                    
+                    budgetThumb.style.left = `50%`;
+                    budgetValue.textContent = `₲10.950.000`;
+                    budgetValue.style.left = `50%`;
+                    budgetInput.value = 10950000;
+                } else {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+            })
+            .catch(error => {
+                showNotification('Error al enviar la cotización. Por favor, intenta nuevamente o contáctanos directamente.', 'error');
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        }
+
+        // Mostrar notificación
+        function showNotification(message, type = 'success') {
+            notificationText.textContent = message;
+            notification.className = 'notification';
+            notification.classList.add(type);
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+
+        // Animación de aparición al hacer scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Inicializar elementos con opacidad 0 para la animación
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+        
+        // Ejecutar al cargar y al hacer scroll
+        window.addEventListener('load', fadeInOnScroll);
+        window.addEventListener('scroll', fadeInOnScroll);
+    </script>
+</body>
+</html>

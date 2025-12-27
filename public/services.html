@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <!-- Favicon Links -->
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - DM Electronix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --white: #ffffff;
+            --cyan: #0cc0df;
+            --dark-blue: #1d2931;
+            --black: #000000;
+            --gray: #f5f5f5;
+            --light-gray: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            line-height: 1.6;
+        }
+
+        /* Header y Navegación */
+        header {
+            background-color: var(--dark-blue);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--cyan);
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--cyan);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 2rem 5%;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, rgba(12, 192, 223, 0.1) 0%, rgba(29, 41, 49, 0.1) 100%);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--cyan), var(--dark-blue));
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 span {
+            color: var(--cyan);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Service Categories */
+        .service-categories {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2 span {
+            color: var(--cyan);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--cyan);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--cyan);
+        }
+
+        .category-icon {
+            font-size: 3.5rem;
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .category-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-link {
+            display: inline-block;
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .category-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--cyan);
+            transition: width 0.3s;
+        }
+
+        .category-link:hover {
+            color: var(--dark-blue);
+        }
+
+        .category-link:hover::after {
+            width: 100%;
+        }
+
+        /* Services Detail */
+        .services-detail {
+            margin-bottom: 5rem;
+        }
+
+        .service-detail-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: center;
+        }
+
+        .service-detail-card:nth-child(even) .service-image {
+            order: 2;
+        }
+
+        .service-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            height: 300px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-image i {
+            font-size: 8rem;
+            color: var(--cyan);
+        }
+
+        .service-content {
+            padding: 1rem;
+        }
+
+        .service-content h3 {
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--cyan);
+        }
+
+        .service-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .service-features li i {
+            color: var(--cyan);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .service-button {
+            display: inline-block;
+            background-color: var(--cyan);
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--cyan);
+        }
+
+        .service-button:hover {
+            background-color: transparent;
+            color: var(--cyan);
+        }
+
+        /* Service Process */
+        .service-process {
+            margin-bottom: 5rem;
+            background-color: var(--gray);
+            padding: 3rem;
+            border-radius: 15px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--cyan);
+            color: var(--white);
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .process-step p {
+            color: #666;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #0f1a21 100%);
+            color: var(--white);
+            padding: 4rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section h2 span {
+            color: var(--cyan);
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .cta-button.primary {
+            background-color: var(--cyan);
+            color: var(--white);
+            border: 2px solid var(--cyan);
+        }
+
+        .cta-button.primary:hover {
+            background-color: transparent;
+            color: var(--cyan);
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cta-button.secondary:hover {
+            background-color: var(--white);
+            color: var(--dark-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 3rem 5% 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--cyan);
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--cyan);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--cyan);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-blue);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                padding: 1rem;
+                display: block;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .service-detail-card:nth-child(even) .service-image {
+                order: 0;
+            }
+            
+            .cta-section {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header y Navegación -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div class="logo-text">DM <span>Electronix</span></div>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="services.html" class="active">Servicios</a></li>
+                <li><a href="components.html">Componentes</a></li>
+                <li><a href="manual.html">Manual de Optimización</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header fade-in">
+            <h1>Nuestros <span>Servicios</span></h1>
+            <p>En DM Electronix ofrecemos soluciones integrales para todas tus necesidades tecnológicas. Desde reparaciones hasta construcciones personalizadas, nuestro equipo de expertos está listo para ayudarte.</p>
+        </section>
+
+        <!-- Service Categories -->
+        <section class="service-categories fade-in">
+            <div class="section-title">
+                <h2>Categorías de <span>Servicios</span></h2>
+                <p>Explora nuestras diferentes áreas de especialización y encuentra el servicio perfecto para ti.</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Reparaciones</h3>
+                    <p>Diagnóstico y reparación de PCs, laptops y celulares. Soluciones rápidas y efectivas.</p>
+                    <a href="#reparaciones" class="category-link">Ver servicios</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Construcción Personalizada</h3>
+                    <p>PCs a medida según tus necesidades y presupuesto. Máximo rendimiento garantizado.</p>
+                    <a href="#construccion" class="category-link">Ver servicios</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Optimización</h3>
+                    <p>Mejora el rendimiento de tu equipo para gaming o productividad. Actualizaciones de hardware y software.</p>
+                    <a href="#optimizacion" class="category-link">Ver servicios</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Venta de Componentes</h3>
+                    <p>Componentes de computadora de alta calidad. Las mejores marcas al mejor precio.</p>
+                    <a href="components.html" class="category-link">Ver catálogo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Detail -->
+        <section class="services-detail">
+            <!-- Reparación de PCs -->
+            <div id="reparaciones" class="service-detail-card fade-in">
+                <div class="service-image">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Reparación de PCs y Laptops</h3>
+                    <p>Nuestro equipo de técnicos certificados se especializa en el diagnóstico y reparación de computadoras de escritorio y portátiles de todas las marcas y modelos. Utilizamos herramientas de diagnóstico avanzadas y componentes de calidad para garantizar reparaciones duraderas.</p>
+                    
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Diagnóstico gratuito de problemas</li>
+                        <li><i class="fas fa-check-circle"></i> Reparación de hardware: placas madre, discos duros, fuentes de poder</li>
+                        <li><i class="fas fa-check-circle"></i> Solución de problemas de software y sistemas operativos</li>
+                        <li><i class="fas fa-check-circle"></i> Eliminación de virus y malware</li>
+                        <li><i class="fas fa-check-circle"></i> Recuperación de datos perdidos o dañados</li>
+                        <li><i class="fas fa-check-circle"></i> Garantía de 90 días en todas las reparaciones</li>
+                    </ul>
+                    
+                    <a href="pc-repair.html" class="service-button">Más información sobre reparación de PCs</a>
+                </div>
+            </div>
+            
+            <!-- Reparación de Celulares -->
+            <div class="service-detail-card fade-in">
+                <div class="service-image">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Reparación de Celulares y Tablets</h3>
+                    <p>Especialistas en la reparación de smartphones y tablets de todas las marcas. Contamos con repuestos originales y de alta calidad para garantizar el mejor funcionamiento de tu dispositivo móvil.</p>
+                    
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Cambio de pantallas rotas o dañadas</li>
+                        <li><i class="fas fa-check-circle"></i> Reemplazo de baterías agotadas</li>
+                        <li><i class="fas fa-check-circle"></i> Reparación de puertos de carga y auriculares</li>
+                        <li><i class="fas fa-check-circle"></i> Solución de problemas de software y actualizaciones</li>
+                        <li><i class="fas fa-check-circle"></i> Reparación de cámaras y módulos de sonido</li>
+                        <li><i class="fas fa-check-circle"></i> Servicio express para reparaciones urgentes</li>
+                    </ul>
+                    
+                    <a href="cellphone-repair.html" class="service-button">Más información sobre reparación de celulares</a>
+                </div>
+            </div>
+            
+            <!-- Construcción de PCs Personalizados -->
+            <div id="construccion" class="service-detail-card fade-in">
+                <div class="service-image">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Construcción de PCs Personalizados</h3>
+                    <p>Creamos computadoras personalizadas adaptadas a tus necesidades específicas. Ya sea para gaming de alto rendimiento, trabajo profesional o uso doméstico, diseñamos el equipo perfecto para ti dentro de tu presupuesto.</p>
+                    
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Asesoramiento personalizado según necesidades y presupuesto</li>
+                        <li><i class="fas fa-check-circle"></i> Selección de componentes de alta calidad y compatibilidad</li>
+                        <li><i class="fas fa-check-circle"></i> Ensamblaje profesional con gestión de cables optimizada</li>
+                        <li><i class="fas fa-check-circle"></i> Pruebas de estrés y estabilidad del sistema</li>
+                        <li><i class="fas fa-check-circle"></i> Instalación y configuración de sistema operativo y drivers</li>
+                        <li><i class="fas fa-check-circle"></i> Garantía de 1 año en mano de obra y componentes</li>
+                    </ul>
+                    
+                    <a href="custom-pc.html" class="service-button">Más información sobre PCs personalizados</a>
+                </div>
+            </div>
+            
+            <!-- Optimización de PCs -->
+            <div id="optimizacion" class="service-detail-card fade-in">
+                <div class="service-image">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Optimización de PCs para Gaming y Rendimiento</h3>
+                    <p>Maximiza el rendimiento de tu computadora para gaming, edición de video o cualquier tarea demandante. Realizamos ajustes de hardware y software para obtener el máximo potencial de tu equipo.</p>
+                    
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Overclocking seguro de CPU y GPU</li>
+                        <li><i class="fas fa-check-circle"></i> Optimización de sistema operativo y servicios</li>
+                        <li><i class="fas fa-check-circle"></i> Actualización de componentes para mejorar rendimiento</li>
+                        <li><i class="fas fa-check-circle"></i> Configuración de perfiles de rendimiento para juegos específicos</li>
+                        <li><i class="fas fa-check-circle"></i> Limpieza física y térmica del sistema</li>
+                        <li><i class="fas fa-check-circle"></i> Instalación y configuración de software de monitoreo</li>
+                    </ul>
+                    
+                    <a href="optimization.html" class="service-button">Más información sobre optimización</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Process -->
+        <section class="service-process fade-in">
+            <div class="section-title">
+                <h2>Nuestro <span>Proceso</span> de Trabajo</h2>
+                <p>Garantizamos calidad y transparencia en cada paso de nuestro servicio.</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Diagnóstico</h4>
+                    <p>Evaluamos el equipo para identificar el problema o las necesidades específicas.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Cotización</h4>
+                    <p>Te proporcionamos un presupuesto detallado y transparente sin compromiso.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Aprobación</h4>
+                    <p>Una vez aprobado el presupuesto, procedemos con el servicio solicitado.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Ejecución</h4>
+                    <p>Nuestros técnicos realizan el servicio con componentes de calidad y metodología probada.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h4>Pruebas</h4>
+                    <p>Realizamos pruebas exhaustivas para garantizar el funcionamiento óptimo.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h4>Entrega</h4>
+                    <p>Te entregamos el equipo listo para usar con garantía incluida.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section fade-in">
+            <h2>¿Listo para <span>mejorar</span> tu experiencia tecnológica?</h2>
+            <p>No importa si necesitas reparar un dispositivo, construir una PC personalizada o optimizar tu equipo actual. En DM Electronix tenemos la solución perfecta para ti. Contáctanos hoy mismo para una consulta gratuita.</p>
+            
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-button primary">Solicitar Presupuesto</a>
+                <a href="tel:+15551234567" class="cta-button secondary">Llámanos Ahora</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>DM Electronix</h3>
+                <p>Somos una empresa especializada en servicios técnicos y venta de componentes informáticos. Calidad y profesionalismo desde 2010.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Servicios</h3>
+                <a href="pc-repair.html">Reparación de PCs</a>
+                <a href="laptop-repair.html">Reparación de Laptops</a>
+                <a href="cellphone-repair.html">Reparación de Celulares</a>
+                <a href="custom-pc.html">PCs Personalizados</a>
+                <a href="optimization.html">Optimización de PCs</a>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Calle Tecnología 123, Ciudad Digital</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@dmelectronix.com</p>
+                <p><i class="fas fa-clock"></i> Lunes a Viernes: 9:00 - 19:00</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Suscríbete para recibir ofertas especiales y novedades tecnológicas.</p>
+                <form id="newsletter-form">
+                    <input type="email" placeholder="Tu correo electrónico" required>
+                    <button type="submit" class="service-button" style="margin-top: 10px; width: 100%;">Suscribirse</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 DM Electronix. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menú hamburguesa
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Formulario de newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert(`¡Gracias por suscribirte con el correo: ${email}! Te enviaremos nuestras mejores ofertas.`);
+            this.reset();
+        });
+        
+        // Scroll suave para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 120,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animación de aparición al hacer scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Inicializar elementos con opacidad 0 para la animación
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+        
+        // Ejecutar al cargar y al hacer scroll
+        window.addEventListener('load', fadeInOnScroll);
+        window.addEventListener('scroll', fadeInOnScroll);
+    </script>
+</body>
+</html>
