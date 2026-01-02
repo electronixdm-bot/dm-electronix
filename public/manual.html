@@ -55,18 +55,29 @@
             display: flex;
             align-items: center;
             color: var(--white);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .logo-icon {
-            font-size: 2.5rem;
-            color: var(--cyan);
-            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            transition: transform 0.3s;
         }
-
         .logo-text {
             font-size: 1.8rem;
             font-weight: 700;
             letter-spacing: 1px;
+        }
+
+        .logo-image {
+            height: 3rem; /* Ajusta esto según el tamaño que quieras */
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
         }
 
         .logo-text span {
@@ -884,12 +895,12 @@
     <!-- Header y Navegación -->
     <header>
         <div class="nav-container">
-            <div class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-book"></i>
+                    <img src="images/logo-64x64.png" alt="DM Electronix Logo">
                 </div>
                 <div class="logo-text">DM <span>Electronix</span></div>
-            </div>
+            </a>    
             
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
@@ -1065,7 +1076,7 @@
             <div class="pricing-card">
                 <div class="pricing-header">
                     <h3>Manual de Optimización Premium</h3>
-                    <div class="pricing-price">$29.99</div>
+                    <div class="pricing-price">₲90.000</div>
                     <div class="pricing-period">Pago único - Acceso de por vida</div>
                 </div>
                 <div class="pricing-features">
@@ -1231,7 +1242,16 @@
                 <h2>Completa tu <span>Compra</span></h2>
                 <p>Llena el siguiente formulario para adquirir el Manual de Optimización Premium.</p>
                 
-                <form id="purchaseForm">
+                <form id="purchaseForm" action="https://formspree.io/f/mrbnwlrw" method="POST">
+                    <!-- Campos ocultos para Formspree -->
+                    <input type="hidden" name="_subject" value="Compra Manual de Optimización - DM Electronix">
+                    <input type="hidden" name="_language" value="es">
+                    <input type="hidden" name="product" value="Manual de Optimización Premium">
+                    <input type="hidden" name="original_price" value="90000">
+                    <input type="hidden" name="final_price" id="form-final-price" value="90000">
+                    <input type="hidden" name="discount_code" id="form-discount-code" value="">
+                    <input type="hidden" name="discount_amount" id="form-discount-amount" value="0">
+                    
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Nombre Completo *</label>
@@ -1248,6 +1268,7 @@
                         <label for="country">País *</label>
                         <select id="country" name="country" required>
                             <option value="">Selecciona tu país</option>
+                            <option value="PY">Paraguay</option>
                             <option value="AR">Argentina</option>
                             <option value="MX">México</option>
                             <option value="ES">España</option>
@@ -1287,20 +1308,20 @@
                         <div style="background-color: #f9f9f9; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                                 <span>Manual de Optimización Premium:</span>
-                                <span>$29.99</span>
+                                <span>₲90.000</span>
                             </div>
                             <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                                 <span>Descuento:</span>
-                                <span id="discount-amount">$0.00</span>
+                                <span id="discount-amount">₲0</span>
                             </div>
                             <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; padding-top: 0.5rem; border-top: 1px solid var(--light-gray);">
                                 <span>Total a pagar:</span>
-                                <span id="total-price">$29.99</span>
+                                <span id="total-price">₲90.000</span>
                             </div>
                         </div>
                     </div>
                     
-                    <button type="submit" class="submit-btn">Comprar Manual por $29.99</button>
+                    <button type="submit" class="submit-btn">Comprar Manual por ₲90.000</button>
                     
                     <p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
                         Al completar tu compra, aceptas nuestros <a href="#" style="color: var(--cyan);">Términos de Servicio</a> y <a href="#" style="color: var(--cyan);">Política de Privacidad</a>.
@@ -1315,12 +1336,10 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>DM Electronix</h3>
-                <p>Somos una empresa especializada en servicios técnicos y venta de componentes informáticos. Calidad y profesionalismo desde 2010.</p>
+                <p>Somos una empresa especializada en servicios técnicos y venta de componentes informáticos. Calidad y profesionalismo desde 2023.</p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             
@@ -1335,24 +1354,15 @@
             
             <div class="footer-column">
                 <h3>Contacto</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Calle Tecnología 123, Ciudad Digital</p>
-                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                <p><i class="fas fa-envelope"></i> info@dmelectronix.com</p>
-                <p><i class="fas fa-clock"></i> Lunes a Viernes: 9:00 - 19:00</p>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Newsletter</h3>
-                <p>Suscríbete para recibir ofertas especiales y novedades tecnológicas.</p>
-                <form id="newsletter-form">
-                    <input type="email" placeholder="Tu correo electrónico" required>
-                    <button type="submit" class="submit-btn" style="margin-top: 10px;">Suscribirse</button>
-                </form>
+                    <p><i class="fas fa-map-marker-alt"></i> Aldea N°6, Filadelfia</p>
+                    <p><i class="fas fa-phone"></i> +595 981 973988</p>
+                    <p><i class="fas fa-envelope"></i> electronixdm@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Viernes a Sábado: 14:00 - 20:00</p>
             </div>
         </div>
         
         <div class="copyright">
-            <p>&copy; 2023 DM Electronix. Todos los derechos reservados.</p>
+            <p>&copy; 2026 DM Electronix. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -1439,7 +1449,8 @@
             const coupon = this.value.toUpperCase();
             const discountAmount = document.getElementById('discount-amount');
             const totalPrice = document.getElementById('total-price');
-            const basePrice = 29.99;
+            const submitBtn = document.querySelector('.submit-btn');
+            const basePrice = 90000; // Precio base en PYG
             
             // Códigos de descuento válidos
             const validCoupons = {
@@ -1449,48 +1460,63 @@
             };
             
             if (validCoupons[coupon]) {
-                const discount = basePrice * validCoupons[coupon];
+                const discount = Math.round(basePrice * validCoupons[coupon]);
                 const finalPrice = basePrice - discount;
                 
-                discountAmount.textContent = `-$${discount.toFixed(2)}`;
-                totalPrice.textContent = `$${finalPrice.toFixed(2)}`;
+                discountAmount.textContent = `-₲${discount.toLocaleString('es-PY')}`;
+                totalPrice.textContent = `₲${finalPrice.toLocaleString('es-PY')}`;
                 
                 // Actualizar texto del botón
-                document.querySelector('.submit-btn').textContent = `Comprar Manual por $${finalPrice.toFixed(2)}`;
+                submitBtn.textContent = `Comprar Manual por ₲${finalPrice.toLocaleString('es-PY')}`;
+                
+                // Actualizar campos ocultos del formulario
+                document.getElementById('form-final-price').value = finalPrice;
+                document.getElementById('form-discount-code').value = coupon;
+                document.getElementById('form-discount-amount').value = discount;
             } else if (coupon.length >= 5) {
-                discountAmount.textContent = '$0.00';
-                totalPrice.textContent = '$29.99';
-                document.querySelector('.submit-btn').textContent = 'Comprar Manual por $29.99';
+                // Si el código no es válido, restablecer
+                discountAmount.textContent = '₲0';
+                totalPrice.textContent = '₲90.000';
+                submitBtn.textContent = 'Comprar Manual por ₲90.000';
+                
+                // Restablecer campos ocultos
+                document.getElementById('form-final-price').value = 90000;
+                document.getElementById('form-discount-code').value = '';
+                document.getElementById('form-discount-amount').value = 0;
             }
         });
-        
-        // Formulario de compra
+
+        // Formulario de compra - Enviar a Formspree
         document.getElementById('purchaseForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            // Validar antes de enviar
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const country = document.getElementById('country').value;
             
-            const paymentMethod = document.getElementById('payment-method').value;
-            const totalPrice = document.getElementById('total-price').textContent;
+            if (!name || !email || !country) {
+                e.preventDefault();
+                alert('Por favor, completa todos los campos obligatorios (*)');
+                return;
+            }
             
-            alert(`¡Gracias por tu compra!\n\nHemos registrado tu pedido del Manual de Optimización Premium por ${totalPrice}. Te hemos enviado un correo electrónico con los detalles de tu compra y el enlace de descarga.\n\nMétodo de pago seleccionado: ${paymentMethod === 'credit' ? 'Tarjeta de Crédito' : paymentMethod === 'paypal' ? 'PayPal' : 'Transferencia Bancaria'}`);
-            this.reset();
+            // Mostrar mensaje de procesamiento
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+            submitBtn.disabled = true;
             
-            // Resetear valores
-            document.querySelectorAll('.payment-method').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            document.querySelector('.payment-method[data-payment="credit"]').classList.add('selected');
-            document.getElementById('payment-method').value = "credit";
-            document.getElementById('discount-amount').textContent = "$0.00";
-            document.getElementById('total-price').textContent = "$29.99";
-            document.querySelector('.submit-btn').textContent = 'Comprar Manual por $29.99';
+            // El formulario se enviará automáticamente a Formspree
+            // Podemos agregar un retraso para mostrar el mensaje
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 3000);
         });
-        
-        // Formulario de newsletter
-        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            alert(`¡Gracias por suscribirte con el correo: ${email}! Te enviaremos nuestras mejores ofertas.`);
-            this.reset();
+
+        // Inicializar valores de campos ocultos
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('form-final-price').value = 90000;
+            document.getElementById('form-discount-amount').value = 0;
         });
         
         // Animación de aparición al hacer scroll

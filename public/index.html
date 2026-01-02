@@ -33,7 +33,6 @@
             --shadow-color: rgba(0, 0, 0, 0.08);
         }
 
-
         * {
             margin: 0;
             padding: 0;
@@ -50,47 +49,50 @@
 
         /* Header y Navegación - Turtle Beach Inspired */
         header {
-            background-color: var(--nav-bg);
-            padding: 0.8rem 5%;
+            background-color: var(--dark-blue);
+            padding: 1rem 5%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid var(--border-color);
         }
 
+        /* Nav container */
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
         }
 
+        /* Logo - Igual que services.html */
         .logo {
             display: flex;
             align-items: center;
             color: var(--white);
             text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .logo-icon {
-            font-size: 2.2rem;
-            color: var(--cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-right: 12px;
             transition: transform 0.3s;
         }
-
-        .logo:hover .logo-icon {
-            transform: scale(1.1);
-        }
-
         .logo-text {
             font-size: 1.8rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-image {
+            height: 3rem; /* Ajusta esto según el tamaño que quieras */
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
         }
 
         .logo-text span {
@@ -106,20 +108,23 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
         }
 
         .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s;
-            padding: 0.5rem 0;
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 500; /* 500 en lugar de 600 */
+        font-size: 1.1rem; /* 1.1rem en lugar de 1rem */
+        transition: color 0.3s; /* Solo color transition, no all */
+        padding: 0.5rem 0;
+        position: relative;
+        /* Quita: text-transform: uppercase; */
+        /* Quita: letter-spacing: 0.5px; */
+    }
 
         .nav-links a:hover {
             color: var(--cyan);
@@ -140,31 +145,8 @@
             width: 100%;
         }
 
-        /* Theme Toggle Button */
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.4rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .theme-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: rotate(30deg);
-        }
-
         .hamburger {
-            display: none;
+            display: none;  
             cursor: pointer;
             font-size: 1.8rem;
             color: var(--white);
@@ -172,6 +154,17 @@
             border: none;
         }
 
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, rgba(12, 192, 223, 0.1) 0%, rgba(29, 41, 49, 0.1) 100%);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
         /* Hero Section - Turtle Beach Style */
         .hero {
             background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), 
@@ -182,7 +175,7 @@
             display: flex;
             align-items: center;
             padding: 0 5%;
-            margin-top: 70px;
+            margin-top: 75px;
             color: var(--white);
             position: relative;
             overflow: hidden;
@@ -634,9 +627,6 @@
                 font-size: 1.8rem;
             }
             
-            .nav-container {
-                flex-wrap: wrap;
-            }
             
             .nav-right {
                 order: 3;
@@ -679,24 +669,22 @@
         <div class="nav-container">
             <a href="index.html" class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-microchip"></i>
+                    <img src="images/logo-64x64.png" alt="DM Electronix Logo">
                 </div>
                 <div class="logo-text">DM <span>Electronix</span></div>
             </a>
             
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="services.html">Servicios</a></li>
+                <li><a href="services.html" class="active">Servicios</a></li>
                 <li><a href="components.html">Componentes</a></li>
                 <li><a href="manual.html">Manual de Optimización</a></li>
                 <li><a href="contact.html">Contacto</a></li>
             </ul>
-            
-            <div class="nav-right">
-                <button class="hamburger" id="hamburger" aria-label="Menú">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
         </div>
     </header>
 
@@ -735,7 +723,7 @@
                 <div class="service-content">
                     <h3>Reparación de Laptops</h3>
                     <p>Reparación especializada de portátiles de todas las marcas. Cambio de pantallas, teclados, baterías y más.</p>
-                    <a href="laptop-repair.html" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                    <a href="pc-repair.html" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             
@@ -817,390 +805,326 @@
                 <a href="laptop-repair.html">Reparación de Laptops</a>
                 <a href="cellphone-repair.html">Reparación de Celulares</a>
                 <a href="custom-pc.html">PCs Personalizados</a>
-                <a href="optimization.html">Optimización de PCs</a>
+                    <a href="optimization.html">Optimización de PCs</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Aldea N°6, Filadelfia</p>
+                    <p><i class="fas fa-phone"></i> +595 981 973988</p>
+                    <p><i class="fas fa-envelope"></i> electronixdm@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Viernes a Sábado: 14:00 - 20:00</p>
+                </div>
             </div>
             
-            <div class="footer-column">
-                <h3>Contacto</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Aldea N°6, Filadelfia</p>
-                <p><i class="fas fa-phone"></i> +595 981 973988</p>
-                <p><i class="fas fa-envelope"></i> electronixdm@gmail.com</p>
-                <p><i class="fas fa-clock"></i> Lunes a Sábado: 9:00 - 19:00</p>
+            <div class="copyright">
+                <p>&copy; 2026 DM Electronix. Todos los derechos reservados.</p>
             </div>
-        </div>
-        
-        <div class="copyright">
-            <p>&copy; 2023 DM Electronix. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+        </footer>
 
-    <script>
-        // Tasa de cambio aproximada: 1 USD = 7300 PYG
-        const EXCHANGE_RATE = 7300;
-        
-        // Función para formatear precio en PYG
-        function formatPricePYG(priceUSD) {
-            const pricePYG = Math.round(priceUSD * EXCHANGE_RATE);
-            return `₲${pricePYG.toLocaleString('es-PY')}`;
-        }
-        
-        // Función para formatear precio simple (sin símbolo)
-        function formatPriceSimple(priceUSD) {
-            return Math.round(priceUSD * EXCHANGE_RATE);
-        }
-
-        // Datos de productos
-        const products = [
-            {
-                id: 1,
-                name: "Procesador AMD Ryzen 7 5800X",
-                category: "Procesadores",
-                brand: "AMD",
-                description: "8 núcleos, 16 hilos. Frecuencia base de 3.8GHz, turbo hasta 4.7GHz. Socket AM4. Perfecto para gaming y productividad.",
-                price: 349.99,
-                oldPrice: 399.99,
-                rating: 4.5,
-                stock: 15,
-                badge: "Popular",
-                image: "images/ryzen7-5800x.jpg",
-                specifications: {
-                    "Núcleos": "8",
-                    "Hilos": "16",
-                    "Frecuencia Base": "3.8 GHz",
-                    "Frecuencia Turbo": "4.7 GHz",
-                    "Socket": "AM4",
-                    "Cache L3": "32 MB",
-                    "TDP": "105W",
-                    "Tecnología": "7nm Zen 3"
-                }
-            },
-            {
-                id: 2,
-                name: "Tarjeta Gráfica NVIDIA RTX 4070",
-                category: "Tarjetas Gráficas",
-                brand: "NVIDIA",
-                description: "12GB GDDR6X. Arquitectura Ada Lovelace con DLSS 3.0 y ray tracing. Rendimiento excepcional para gaming en 1440p y 4K.",
-                price: 599.99,
-                oldPrice: 649.99,
-                rating: 4.3,
-                stock: 8,
-                badge: "Nuevo",
-                image: "images/rtx-4070.jpg",
-                specifications: {
-                    "Memoria": "12GB GDDR6X",
-                    "Arquitectura": "Ada Lovelace",
-                    "Bus": "192-bit",
-                    "CUDA Cores": "5888",
-                    "TDP": "200W",
-                    "Conectores": "3x DisplayPort, 1x HDMI",
-                    "DLSS": "3.0"
-                }
-            },
-            {
-                id: 3,
-                name: "Memoria RAM Corsair 32GB DDR5",
-                category: "Memorias RAM",
-                brand: "Corsair",
-                description: "32GB (2x16) DDR5 5600MHz. Latencia CL36. Diseño con disipador de calor. Compatible con Intel y AMD.",
-                price: 129.99,
-                oldPrice: 149.99,
-                rating: 4.8,
-                stock: 22,
-                badge: "Oferta",
-                image: "images/32gb-corsair-vengeance-ddr5-2x16gb-ram-5600mhz.webp",
-                specifications: {
-                    "Capacidad": "32GB (2x16GB)",
-                    "Tipo": "DDR5",
-                    "Velocidad": "5600 MHz",
-                    "Latencia": "CL36",
-                    "Voltaje": "1.25V",
-                    "Disipador": "Aluminio",
-                    "Compatibilidad": "Intel/AMD"
-                }
-            },
-            {
-                id: 4,
-                name: "SSD NVMe Samsung 2TB 980 PRO",
-                category: "Almacenamiento",
-                brand: "Samsung",
-                description: "2TB PCIe 4.0 NVMe. Velocidades de lectura hasta 7000MB/s y escritura hasta 5000MB/s. Ideal para gaming y aplicaciones pesadas.",
-                price: 149.99,
-                oldPrice: 179.99,
-                rating: 4.7,
-                stock: 12,
-                badge: null,
-                image: "images/Samsung-980-pro.jpg",
-                specifications: {
-                    "Capacidad": "2TB",
-                    "Interfaz": "PCIe 4.0 NVMe",
-                    "Lectura": "7000 MB/s",
-                    "Escritura": "5000 MB/s",
-                    "Tipo": "M.2 2280",
-                    "Garantía": "5 años",
-                    "TBW": "1200 TB"
-                }
-            }
-        ];
-
-        // Variables globales
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const featuredProductsContainer = document.getElementById('featured-products-container');
-        const themeToggle = document.getElementById('theme-toggle');
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-
-        // Función para obtener productos destacados
-        function getFeaturedProducts() {
-            return products.slice(0, 4);
-        }
-
-        // Generar estrellas de rating
-        function generateStars(rating) {
-            let stars = '';
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 >= 0.5;
+        <script>
+            // Tasa de cambio aproximada: 1 USD = 7300 PYG
+            const EXCHANGE_RATE = 7300;
             
-            for (let i = 1; i <= 5; i++) {
-                if (i <= fullStars) {
-                    stars += '<i class="fas fa-star"></i>';
-                } else if (i === fullStars + 1 && hasHalfStar) {
-                    stars += '<i class="fas fa-star-half-alt"></i>';
-                } else {
-                    stars += '<i class="far fa-star"></i>';
-                }
+            // Función para formatear precio en PYG
+            function formatPricePYG(priceUSD) {
+                const pricePYG = Math.round(priceUSD * EXCHANGE_RATE);
+                return `₲${pricePYG.toLocaleString('es-PY')}`;
             }
             
-            return stars;
-        }
-
-        // Generar icono según categoría (para productos sin imagen)
-        function getProductIcon(category) {
-            switch(category) {
-                case 'Procesadores': return 'microchip';
-                case 'Tarjetas Gráficas': return 'project-diagram';
-                case 'Memorias RAM': return 'memory';
-                case 'Almacenamiento': return 'hdd';
-                case 'Placas Base': return 'microchip';
-                case 'Fuentes de Poder': return 'bolt';
-                default: return 'microchip';
+            // Función para formatear precio simple (sin símbolo)
+            function formatPriceSimple(priceUSD) {
+                return Math.round(priceUSD * EXCHANGE_RATE);
             }
-        }
 
-        // Renderizar productos destacados
-        function renderFeaturedProducts() {
-            const featuredProducts = getFeaturedProducts();
-            
-            featuredProductsContainer.innerHTML = '';
-            
-            featuredProducts.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'component-card fade-in';
+            // Datos de productos
+            const products = [
+                {
+                    id: 1,
+                    name: "Procesador AMD Ryzen 7 5800X",
+                    category: "Procesadores",
+                    brand: "AMD",
+                    description: "8 núcleos, 16 hilos. Frecuencia base de 3.8GHz, turbo hasta 4.7GHz. Socket AM4. Perfecto para gaming y productividad.",
+                    price: 349.99,
+                    oldPrice: 399.99,
+                    rating: 4.5,
+                    stock: 15,
+                    badge: "Popular",
+                    image: "images/ryzen7-5800x.jpg",
+                    specifications: {
+                        "Núcleos": "8",
+                        "Hilos": "16",
+                        "Frecuencia Base": "3.8 GHz",
+                        "Frecuencia Turbo": "4.7 GHz",
+                        "Socket": "AM4",
+                        "Cache L3": "32 MB",
+                        "TDP": "105W",
+                        "Tecnología": "7nm Zen 3"
+                    }
+                },
+                {
+                    id: 2,
+                    name: "Tarjeta Gráfica NVIDIA RTX 4070",
+                    category: "Tarjetas Gráficas",
+                    brand: "NVIDIA",
+                    description: "12GB GDDR6X. Arquitectura Ada Lovelace con DLSS 3.0 y ray tracing. Rendimiento excepcional para gaming en 1440p y 4K.",
+                    price: 599.99,
+                    oldPrice: 649.99,
+                    rating: 4.3,
+                    stock: 8,
+                    badge: "Nuevo",
+                    image: "images/rtx-4070.jpg",
+                    specifications: {
+                        "Memoria": "12GB GDDR6X",
+                        "Arquitectura": "Ada Lovelace",
+                        "Bus": "192-bit",
+                        "CUDA Cores": "5888",
+                        "TDP": "200W",
+                        "Conectores": "3x DisplayPort, 1x HDMI",
+                        "DLSS": "3.0"
+                    }
+                },
+                {
+                    id: 3,
+                    name: "Memoria RAM Corsair 32GB DDR5",
+                    category: "Memorias RAM",
+                    brand: "Corsair",
+                    description: "32GB (2x16) DDR5 5600MHz. Latencia CL36. Diseño con disipador de calor. Compatible con Intel y AMD.",
+                    price: 129.99,
+                    oldPrice: 149.99,
+                    rating: 4.8,
+                    stock: 22,
+                    badge: "Oferta",
+                    image: "images/32gb-corsair-vengeance-ddr5-2x16gb-ram-5600mhz.webp",
+                    specifications: {
+                        "Capacidad": "32GB (2x16GB)",
+                        "Tipo": "DDR5",
+                        "Velocidad": "5600 MHz",
+                        "Latencia": "CL36",
+                        "Voltaje": "1.25V",
+                        "Disipador": "Aluminio",
+                        "Compatibilidad": "Intel/AMD"
+                    }
+                },
+                {
+                    id: 4,
+                    name: "SSD NVMe Samsung 2TB 980 PRO",
+                    category: "Almacenamiento",
+                    brand: "Samsung",
+                    description: "2TB PCIe 4.0 NVMe. Velocidades de lectura hasta 7000MB/s y escritura hasta 5000MB/s. Ideal para gaming y aplicaciones pesadas.",
+                    price: 149.99,
+                    oldPrice: 179.99,
+                    rating: 4.7,
+                    stock: 12,
+                    badge: null,
+                    image: "images/Samsung-980-pro.jpg",
+                    specifications: {
+                        "Capacidad": "2TB",
+                        "Interfaz": "PCIe 4.0 NVMe",
+                        "Lectura": "7000 MB/s",
+                        "Escritura": "5000 MB/s",
+                        "Tipo": "M.2 2280",
+                        "Garantía": "5 años",
+                        "TBW": "1200 TB"
+                    }
+                }
+            ];
+
+            // Variables globales
+            const featuredProductsContainer = document.getElementById('featured-products-container');
+            // Menú hamburguesa - mismo código que services.html
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                        '<i class="fas fa-times"></i>' : 
+                        '<i class="fas fa-bars"></i>';
+                });
                 
-                // Generar estrellas de rating
-                const stars = generateStars(product.rating);
+                // Cerrar menú al hacer clic en un enlace
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    });
+                });
+            }
+
+            // Generar icono según categoría (para productos sin imagen)
+            function getProductIcon(category) {
+                switch(category) {
+                    case 'Procesadores': return 'microchip';
+                    case 'Tarjetas Gráficas': return 'project-diagram';
+                    case 'Memorias RAM': return 'memory';
+                    case 'Almacenamiento': return 'hdd';
+                    case 'Placas Base': return 'microchip';
+                    case 'Fuentes de Poder': return 'bolt';
+                    default: return 'microchip';
+                }
+            }
+
+            // Renderizar productos destacados
+            function renderFeaturedProducts() {
+                const featuredProducts = getFeaturedProducts();
                 
-                productCard.innerHTML = `
-                    <div class="component-img">
-                        ${product.badge ? `<span class="component-badge">${product.badge}</span>` : ''}
-                        ${product.image ? 
-                            `<img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=Imagen+No+Disponible'; this.style.objectFit='contain'; this.style.padding='20px';">` : 
-                            `<i class="fas fa-${getProductIcon(product.category)} fa-3x"></i>`
-                        }
-                    </div>
-                    <div class="component-info">
-                        <h3>${product.name}</h3>
-                        <div class="component-price">
-                            ${product.oldPrice ? `<span class="component-old-price">${formatPricePYG(product.oldPrice)}</span>` : ''}
-                            ${formatPricePYG(product.price)}
+                featuredProductsContainer.innerHTML = '';
+                
+                featuredProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'component-card fade-in';
+                    
+                    // Generar estrellas de rating
+                    const stars = generateStars(product.rating);
+                    
+                    productCard.innerHTML = `
+                        <div class="component-img">
+                            ${product.badge ? `<span class="component-badge">${product.badge}</span>` : ''}
+                            ${product.image ? 
+                                `<img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=Imagen+No+Disponible'; this.style.objectFit='contain'; this.style.padding='20px';">` : 
+                                `<i class="fas fa-${getProductIcon(product.category)} fa-3x"></i>`
+                            }
                         </div>
-                        <div class="component-rating">
-                            ${stars}
-                            <span style="color: var(--text-secondary); margin-left: 0.5rem;">${product.rating}</span>
+                        <div class="component-info">
+                            <h3>${product.name}</h3>
+                            <div class="component-price">
+                                ${product.oldPrice ? `<span class="component-old-price">${formatPricePYG(product.oldPrice)}</span>` : ''}
+                                ${formatPricePYG(product.price)}
+                            </div>
+                            <div class="component-rating">
+                                ${stars}
+                                <span style="color: var(--text-secondary); margin-left: 0.5rem;">${product.rating}</span>
+                            </div>
+                            <p style="color: var(--text-secondary);">${product.description.substring(0, 100)}...</p>
+                            ${product.stock === 0 ? 
+                                `<button class="component-button" disabled>
+                                    <i class="fas fa-times"></i>
+                                    Agotado
+                                </button>` : 
+                                `<a href="components.html" class="component-button">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Comprar ahora
+                                </a>`
+                            }
                         </div>
-                        <p style="color: var(--text-secondary);">${product.description.substring(0, 100)}...</p>
-                        <button class="component-button" data-id="${product.id}" ${product.stock === 0 ? 'disabled' : ''}>
-                            <i class="fas fa-cart-plus"></i>
-                            ${product.stock === 0 ? 'Agotado' : 'Agregar al Carrito'}
-                        </button>
-                    </div>
+                    `;
+                    
+                    featuredProductsContainer.appendChild(productCard);
+                });
+            }
+
+            // Mostrar notificación
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.innerHTML = `
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
                 `;
                 
-                featuredProductsContainer.appendChild(productCard);
-            });
-            
-            // Añadir event listeners a los botones de agregar al carrito
-            document.querySelectorAll('.component-button').forEach(button => {
-                button.addEventListener('click', addToCartFromHome);
-            });
-        }
-
-        // Agregar al carrito desde la página de inicio
-        function addToCartFromHome(e) {
-            const productId = parseInt(e.currentTarget.getAttribute('data-id'));
-            const product = products.find(p => p.id === productId);
-            
-            if (!product) return;
-            
-            // Verificar stock
-            if (product.stock === 0) {
-                showNotification('Este producto está agotado', 'error');
-                return;
-            }
-            
-            // Verificar si el producto ya está en el carrito
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                // Verificar si hay suficiente stock
-                if (existingItem.quantity >= product.stock) {
-                    showNotification(`Solo quedan ${product.stock} unidades en stock`, 'warning');
-                    return;
-                }
+                // Estilos para la notificación
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : type === 'warning' ? '#ff9800' : '#2196F3'};
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 1rem;
+                    z-index: 9999;
+                    animation: slideIn 0.3s ease-out;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                `;
                 
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    quantity: 1,
-                    category: product.category
+                notification.querySelector('button').style.cssText = `
+                    background: none;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                    font-size: 1rem;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Auto-remove after 3 seconds
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.style.animation = 'slideOut 0.3s ease-out';
+                        setTimeout(() => notification.remove(), 300);
+                    }
+                }, 3000);
+            }
+
+            // Animación de aparición al hacer scroll
+            const fadeElements = document.querySelectorAll('.service-card, .component-card');
+            
+            const fadeInOnScroll = () => {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('fade-in');
+                    }
+                });
+            };
+
+            // Configurar event listeners
+            function setupEventListeners() {
+                // Menú hamburguesa
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                        '<i class="fas fa-times"></i>' : 
+                        '<i class="fas fa-bars"></i>';
+                });
+                
+                // Cerrar menú al hacer clic en un enlace
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    });
+                });
+                
+                // Cerrar menú al hacer clic fuera
+                document.addEventListener('click', (e) => {
+                    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                        navLinks.classList.remove('active');
+                        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
                 });
             }
-            
-            // Actualizar almacenamiento local
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Mostrar confirmación
-            e.currentTarget.innerHTML = '<i class="fas fa-check"></i> Agregado';
-            e.currentTarget.style.backgroundColor = '#4CAF50';
-            e.currentTarget.disabled = true;
-            
-            showNotification('Producto agregado al carrito', 'success');
-            
-            setTimeout(() => {
-                if (e.currentTarget) {
-                    e.currentTarget.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar al Carrito';
-                    e.currentTarget.style.backgroundColor = '';
-                    e.currentTarget.disabled = product.stock === 0;
-                }
-            }, 2000);
-        }
 
-        // Mostrar notificación
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
-            notification.innerHTML = `
-                <span>${message}</span>
-                <button onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
-            `;
-            
-            // Estilos para la notificación
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : type === 'warning' ? '#ff9800' : '#2196F3'};
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 4px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 1rem;
-                z-index: 9999;
-                animation: slideIn 0.3s ease-out;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            `;
-            
-            notification.querySelector('button').style.cssText = `
-                background: none;
-                border: none;
-                color: white;
-                cursor: pointer;
-                font-size: 1rem;
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Auto-remove after 3 seconds
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.style.animation = 'slideOut 0.3s ease-out';
-                    setTimeout(() => notification.remove(), 300);
-                }
-            }, 3000);
-        }
-
-        // Animación de aparición al hacer scroll
-        const fadeElements = document.querySelectorAll('.service-card, .component-card');
-        
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
+            // Inicialización
+            document.addEventListener('DOMContentLoaded', () => {
+                renderFeaturedProducts();
+                setupEventListeners();
                 
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('fade-in');
-                }
+                // Ejecutar animaciones al cargar y al hacer scroll
+                window.addEventListener('load', fadeInOnScroll);
+                window.addEventListener('scroll', fadeInOnScroll);
+                
+                // Agregar estilos para animaciones de notificación
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOut {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
             });
-        };
-
-        // Configurar event listeners
-        function setupEventListeners() {
-            // Menú hamburguesa
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                hamburger.innerHTML = navLinks.classList.contains('active') ? 
-                    '<i class="fas fa-times"></i>' : 
-                    '<i class="fas fa-bars"></i>';
-            });
-            
-            // Toggle de tema
-            themeToggle.addEventListener('click', toggleTheme);
-            
-            // Cerrar menú al hacer clic en un enlace
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
-            
-            // Cerrar menú al hacer clic fuera
-            document.addEventListener('click', (e) => {
-                if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-                    navLinks.classList.remove('active');
-                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            });
-        }
-
-        // Inicialización
-        document.addEventListener('DOMContentLoaded', () => {
-            renderFeaturedProducts();
-            initTheme();
-            setupEventListeners();
-            
-            // Ejecutar animaciones al cargar y al hacer scroll
-            window.addEventListener('load', fadeInOnScroll);
-            window.addEventListener('scroll', fadeInOnScroll);
-            
-            // Agregar estilos para animaciones de notificación
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        });
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>

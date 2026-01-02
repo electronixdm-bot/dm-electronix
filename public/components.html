@@ -56,22 +56,29 @@
             display: flex;
             align-items: center;
             color: var(--white);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .logo-icon {
-            font-size: 2.5rem;
-            color: var(--cyan);
-            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            transition: transform 0.3s;
         }
-
         .logo-text {
             font-size: 1.8rem;
             font-weight: 700;
             letter-spacing: 1px;
         }
 
-        .logo-text span {
-            color: var(--cyan);
+        .logo-image {
+            height: 3rem; /* Ajusta esto según el tamaño que quieras */
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -911,12 +918,12 @@
     <!-- Header y Navegación -->
     <header>
         <div class="nav-container">
-            <div class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-microchip"></i>
+                    <img src="images/logo-64x64.png" alt="DM Electronix Logo">
                 </div>
                 <div class="logo-text">DM <span>Electronix</span></div>
-            </div>
+            </a>
             
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
@@ -1102,9 +1109,7 @@
                 <p>Somos una empresa especializada en servicios técnicos y venta de componentes informáticos. Calidad y profesionalismo desde 2023.</p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             
@@ -1119,24 +1124,15 @@
             
             <div class="footer-column">
                 <h3>Contacto</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Calle Tecnología 123, Ciudad Digital</p>
-                <p><i class="fas fa-phone"></i> +595 981 123-4567</p>
-                <p><i class="fas fa-envelope"></i> componentes@dmelectronix.com</p>
-                <p><i class="fas fa-clock"></i> Lunes a Viernes: 9:00 - 19:00</p>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Newsletter</h3>
-                <p>Suscríbete para recibir ofertas especiales en componentes y novedades tecnológicas.</p>
-                <form id="newsletter-form">
-                    <input type="email" placeholder="Tu correo electrónico" required>
-                    <button type="submit" class="cta-button" style="margin-top: 10px; width: 100%;">Suscribirse</button>
-                </form>
+                    <p><i class="fas fa-map-marker-alt"></i> Aldea N°6, Filadelfia</p>
+                    <p><i class="fas fa-phone"></i> +595 981 973988</p>
+                    <p><i class="fas fa-envelope"></i> electronixdm@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Viernes a Sábado: 14:00 - 20:00</p>
             </div>
         </div>
         
         <div class="copyright">
-            <p>&copy; 2023 DM Electronix. Todos los derechos reservados.</p>
+            <p>&copy; 2026 DM Electronix. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -1168,7 +1164,7 @@
                 rating: 4.5,
                 stock: 15,
                 badge: "Popular",
-                image: "/images/ryzen7-5800x.jpg",
+                image: "images/ryzen7-5800x.jpg",
                 specifications: {
                     "Núcleos": "8",
                     "Hilos": "16",
@@ -1191,7 +1187,7 @@
                 rating: 4.3,
                 stock: 8,
                 badge: "Nuevo",
-                image: "/images/rtx-4070.jpg",
+                image: "images/rtx-4070.jpg",
                 specifications: {
                     "Memoria": "12GB GDDR6X",
                     "Arquitectura": "Ada Lovelace",
@@ -1213,7 +1209,7 @@
                 rating: 4.8,
                 stock: 22,
                 badge: "Oferta",
-                image: "/images/32gb-corsair-vengeance-ddr5-2x16gb-ram-5600mhz.webp",
+                image: "images/32gb-corsair-vengeance-ddr5-2x16gb-ram-5600mhz.webp",
                 specifications: {
                     "Capacidad": "32GB (2x16GB)",
                     "Tipo": "DDR5",
@@ -1235,7 +1231,7 @@
                 rating: 4.7,
                 stock: 12,
                 badge: null,
-                image: "/images/Samsung-980-pro.jpg",
+                image: "images/Samsung-980-pro.jpg",
                 specifications: {
                     "Capacidad": "2TB",
                     "Interfaz": "PCIe 4.0 NVMe",
@@ -1257,7 +1253,7 @@
                 rating: 4.6,
                 stock: 10,
                 badge: "Nuevo",
-                image: "/images/13700k.jpg",
+                image: "images/13700k.jpg",
                 specifications: {
                     "Núcleos P": "8",
                     "Núcleos E": "8",
@@ -1280,7 +1276,7 @@
                 rating: 4.4,
                 stock: 5,
                 badge: "Popular",
-                image: "/images/amd-7800XT.jpg",
+                image: "images/amd-7800XT.jpg",
                 specifications: {
                     "Memoria": "16GB GDDR6",
                     "Arquitectura": "RDNA 3",
@@ -1302,7 +1298,7 @@
                 rating: 4.5,
                 stock: 18,
                 badge: null,
-                image: "/images/MSI-MAG-B650.jpg",
+                image: "images/MSI-MAG-B650.jpg",
                 specifications: {
                     "Socket": "AM5",
                     "Chipset": "B650",
@@ -1324,7 +1320,7 @@
                 rating: 4.9,
                 stock: 25,
                 badge: "Oferta",
-                image: "/images/Corsair-RM850x.jpg",
+                image: "images/Corsair-RM850x.jpg",
                 specifications: {
                     "Potencia": "850W",
                     "Certificación": "80 Plus Gold",
@@ -1346,7 +1342,7 @@
                 rating: 4.4,
                 stock: 0,
                 badge: "Agotado",
-                image: "/images/r5-7600x.jpg",
+                image: "images/r5-7600x.jpg",
                 specifications: {
                     "Núcleos": "6",
                     "Hilos": "12",
@@ -1369,7 +1365,7 @@
                 rating: 4.6,
                 stock: 7,
                 badge: null,
-                image: "/images/gskill-64gb.webp",
+                image: "images/gskill-64gb.webp",
                 specifications: {
                     "Capacidad": "64GB (2x32GB)",
                     "Tipo": "DDR5",
@@ -1391,7 +1387,7 @@
                 rating: 4.3,
                 stock: 30,
                 badge: "Oferta",
-                image: "/images/Crucial-P5-Plus-1TB.jpg",
+                image: "images/Crucial-P5-Plus-1TB.jpg",
                 specifications: {
                     "Capacidad": "1TB",
                     "Interfaz": "PCIe 4.0 NVMe",
@@ -1413,7 +1409,7 @@
                 rating: 4.2,
                 stock: 14,
                 badge: null,
-                image: "/images/4060ti.webp",
+                image: "images/4060ti.webp",
                 specifications: {
                     "Memoria": "8GB GDDR6",
                     "Arquitectura": "Ada Lovelace",
@@ -1493,14 +1489,6 @@
             // Filtros
             applyFiltersButton.addEventListener('click', applyFilters);
             resetFiltersButton.addEventListener('click', resetFilters);
-            
-            // Newsletter
-            document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('input[type="email"]').value;
-                alert(`¡Gracias por suscribirte con el correo: ${email}! Te enviaremos nuestras mejores ofertas en componentes.`);
-                this.reset();
-            });
             
             // Cerrar menú al hacer clic en un enlace
             document.querySelectorAll('.nav-links a').forEach(link => {

@@ -59,18 +59,29 @@
             display: flex;
             align-items: center;
             color: var(--white);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .logo-icon {
-            font-size: 2.5rem;
-            color: var(--cyan);
-            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            transition: transform 0.3s;
         }
-
         .logo-text {
             font-size: 1.8rem;
             font-weight: 700;
             letter-spacing: 1px;
+        }
+
+        .logo-image {
+            height: 3rem; /* Ajusta esto según el tamaño que quieras */
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
         }
 
         .logo-text span {
@@ -1218,12 +1229,12 @@
     <!-- Header y Navegación -->
     <header>
         <div class="nav-container">
-            <div class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-desktop"></i>
+                    <img src="images/logo-64x64.png" alt="DM Electronix Logo">
                 </div>
                 <div class="logo-text">DM <span>Electronix</span></div>
-            </div>
+            </a>
             
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
@@ -1705,12 +1716,10 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>DM Electronix</h3>
-                <p>Somos una empresa especializada en servicios técnicos y venta de componentes informáticos. Calidad y profesionalismo desde 2010.</p>
+                <p>Somos una empresa especializada en servicios técnicos y venta de componentes informáticos. Calidad y profesionalismo desde 2023.</p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             
@@ -1730,19 +1739,10 @@
                 <p><i class="fas fa-envelope"></i> electronixdm@gmail.com</p>
                 <p><i class="fas fa-clock"></i> Lunes a Viernes: 9:00 - 19:00</p>
             </div>
-            
-            <div class="footer-column">
-                <h3>Newsletter</h3>
-                <p>Suscríbete para recibir ofertas especiales y novedades tecnológicas.</p>
-                <form id="newsletter-form">
-                    <input type="email" placeholder="Tu correo electrónico" required>
-                    <button type="submit" class="submit-btn" style="margin-top: 10px;">Suscribirse</button>
-                </form>
-            </div>
         </div>
         
         <div class="copyright">
-            <p>&copy; 2023 DM Electronix. Todos los derechos reservados.</p>
+            <p>&copy; 2026 DM Electronix. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -1961,14 +1961,6 @@
             
             // Formulario de cotización
             document.getElementById('customPcForm').addEventListener('submit', handleFormSubmit);
-            
-            // Formulario de newsletter
-            document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('input[type="email"]').value;
-                showNotification(`¡Gracias por suscribirte con el correo: ${email}! Te enviaremos nuestras mejores ofertas.`, 'success');
-                this.reset();
-            });
             
             // Propósito del formulario
             document.querySelectorAll('.purpose-option').forEach(option => {
